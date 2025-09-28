@@ -1,0 +1,11 @@
+{
+  "name": "ClientVersion",
+  "enabled": true,
+  "singleton": true,
+  "alignment": {
+    "horizontalAlignment": "Right",
+    "horizontalOffset": 5,
+    "verticalAlignment": "Bottom",
+    "verticalOffset": -25
+  }
+}

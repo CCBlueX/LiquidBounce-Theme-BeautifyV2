@@ -46,51 +46,81 @@
   @use "../../../../colors.scss" as *;
 
   .notifications {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    font-family: MyCustomFont;
   }
 
   .notification {
-    grid-row-start: 1;
-    grid-column-start: 1;
-    background-color: rgba($menu-base-color, 0.68);
-    border-radius: 5px;
     display: grid;
     grid-template-areas:
-        "a b"
-        "a c";
+      "a b"
+      "a c";
     grid-template-columns: max-content 1fr;
+    align-items: center;
+    min-width: 360px;
+    padding: 12px 12px;
+    border-radius: 7.5px;
+    background: rgba($menu-base-color, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    position: relative;
     overflow: hidden;
-    padding-right: 10px;
-    min-width: 350px;
 
-    .title {
-      color: $menu-text-color;
-      font-weight: 600;
-      font-size: 18px;
-      grid-area: b;
-      align-self: flex-end;
-    }
-
-    .message {
-      color: $menu-text-dimmed-color;
-      font-weight: 500;
-      grid-area: c;
+    &.error::before {
+      background: $menu-error-color;
     }
 
     .icon {
       grid-area: a;
-      height: 65px;
-      width: 65px;
-      background-color: $accent-color;
+      height: 60px;
+      width: 60px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 10px;
+      margin-right: 14px;
+      background: rgba($accent-color, 0.25);
+      border: 1px solid rgba($accent-color, 0.25);
+      box-shadow: 0 0 10px rgba($accent-color, 0.5);
+
+      transition: all 0.25s ease;
+
+      img {
+        width: 28px;
+        height: 28px;
+      }
 
       &.error {
-        background-color: $menu-error-color;
+        background: rgba($menu-error-color, 0.15);
+        box-shadow: 0 0 12px rgba($menu-error-color, 0.6);
+
+        img {
+        }
       }
+    }
+
+    .title {
+      grid-area: b;
+      font-weight: 700;
+      font-size: 18px;
+      color: $menu-text-color;
+      text-shadow: 0 0 6px rgba(0,0,0,0.5);
+    }
+
+    .message {
+      grid-area: c;
+      font-size: 15px;
+      font-weight: 500;
+      margin-top: 2px;
+      color: $menu-text-dimmed-color;
+      text-shadow: 0 0 4px rgba(0,0,0,0.4);
     }
   }
 </style>

@@ -16,18 +16,16 @@
     let notifications: TNotification[] = [];
 
     function addNotification(title: string, message: string, severity: string) {
-        let animationKey = Date.now();
+        const animationKey = Date.now();
         const id = animationKey;
 
         if (severity === "ENABLED" || severity === "DISABLED") {
-            // Check if there still exists an enable/disable notification for the same module
-            const index = notifications.findIndex((n) => n.message === message)
-            if (index !== -1) {
-                // Set the id of the new notification to the old notification's id.
-                // This will make svelte able to animate it correctly
-                animationKey = notifications[index].animationKey;
+            [title, message] = [message, severity === "ENABLED" ? "Module enabled." : "Module disabled."];
+        }
 
-                // Remove the old notification
+        if (severity === "ENABLED" || severity === "DISABLED") {
+            const index = notifications.findIndex((n) => n.title === title && n.message === message);
+            if (index !== -1) {
                 notifications.splice(index, 1);
             }
         }
@@ -36,10 +34,10 @@
             {animationKey, id, title, message, severity},
             ...notifications,
         ];
-        
+
         setTimeout(() => {
             notifications = notifications.filter((n) => n.id !== id);
-        }, 3000);
+        }, 1500);
     }
 
     listen("notification", (e: NotificationEvent) => {
@@ -50,9 +48,9 @@
 <div class="notifications">
     {#each notifications as {title, message, severity, animationKey} (animationKey)}
         <div
-                animate:flip={{ duration: 200 }}
-                in:fly={{ x: 30, duration: 200 }}
-                out:fly={{ x: 30, duration: 200 }}
+            animate:flip={{ duration: 200 }}
+            in:fly={{ x: 100, duration: 200 }}
+            out:fly={{ x: 100, duration: 200 }}
         >
             <Notification {title} {message} {severity}/>
         </div>

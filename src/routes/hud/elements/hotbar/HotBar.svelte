@@ -2,11 +2,14 @@
     import Status from "./Status.svelte";
     import {listen} from "../../../../integration/ws";
     import type {PlayerData, TextComponent as TTExtComponent} from "../../../../integration/types";
-    import {onMount} from "svelte";
+    import {onDestroy, onMount} from "svelte";
     import {getPlayerData} from "../../../../integration/rest";
     import {fade} from "svelte/transition";
     import TextComponent from "../../../menu/common/TextComponent.svelte";
     import type {ClientPlayerDataEvent, OverlayMessageEvent} from "../../../../integration/events";
+    import {accentColorStore} from "../../../../theme/accentColorStore";
+    import {hexToRgbString} from "../../../../integration/util";
+    import {getClickGuiColor} from "../../../../integration/persistent_storage";
 
     let lastSlot = 0;
     let currentSlot = 0;
@@ -19,6 +22,12 @@
     let itemStackName: TTExtComponent | string | null = null;
     let overlayMessage: OverlayMessageEvent | null = null;
     let overlayMessageTimeout: number | null = null;
+
+    let accentColor = "dodgerblue";
+    const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
+        accentColor = color;
+        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+    });
 
     function updatePlayerData(s: PlayerData) {
         playerData = s;
@@ -60,6 +69,11 @@
 
     onMount(async () => {
         updatePlayerData(await getPlayerData());
+        accentColorStore.set(getClickGuiColor() ?? '#1e90ff');
+    });
+
+    onDestroy(() => {
+        unsubscribeAccent();
     });
 </script>
 
@@ -145,7 +159,7 @@
         </div>
 
         <div class="hotbar-elements">
-            <div class="slider" style="left: {currentSlot * 45}px"></div>
+            <div class="slider" style="left: {currentSlot * 45}px;"></div>
             <div class="slots" bind:this={slotsElement}>
                 <div class="slot"></div>
                 <div class="slot"></div>
@@ -183,17 +197,20 @@
   }
 
   .hotbar-elements {
-    background-color: rgba($hotbar-base-color, 0.68);
+    background-color: rgba($hotbar-base-color, 0.35);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
     position: relative;
     border-radius: 5px;
     overflow: hidden;
 
     .slider {
-      border: solid 2px $accent-color;
+      position: absolute;
       height: 45px;
       width: 45px;
-      position: absolute;
-      border-radius: 5px;
+      border-radius: 7.5px;
+      border: 2px solid rgba(var(--accent-color), 1);
+      background: rgba(var(--accent-color), 0.12);
+      box-shadow: 0 0 12px rgba(var(--accent-color), 0.6);
       /* transition: linear left 0.05s; TODO: Animation is possible but annoying */
     }
 
@@ -211,7 +228,8 @@
     height: 45px;
     width: 45px;
     border-radius: 5px;
-    background-color: rgba($hotbar-base-color, 0.68);
+    background-color: rgba($hotbar-base-color, 0.35);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
     position: absolute;
     bottom: 0;
     left: -65px;
@@ -221,8 +239,9 @@
     color: $hotbar-text-color;
     font-size: 14px;
     margin: 0 auto 15px;
-    font-weight: 500;
-    background-color: rgba($hotbar-base-color, .68);
+    font-weight: 600;
+    background-color: rgba($hotbar-base-color, 0.45);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     padding: 5px 8px;
     border-radius: 5px;
     width: max-content;

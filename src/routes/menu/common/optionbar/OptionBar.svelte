@@ -7,15 +7,17 @@
 </div>
 
 <style lang="scss">
-    @use "../../../../colors.scss" as *;
+  @use "../../../../colors.scss" as *;
 
-    .option-bar {
-      background-color: rgba($menu-base-color, 0.68);
-      padding: 15px 30px;
-      display: flex;
-      border-radius: 5px;
-      align-items: center;
-      column-gap: 30px;
-      margin-bottom: 25px;
-    }
+  .option-bar {
+    background: rgba($menu-base-color, 0.75);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 7.5px;
+    column-gap: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    font-family: MyCustomFont;
+  }
 </style>

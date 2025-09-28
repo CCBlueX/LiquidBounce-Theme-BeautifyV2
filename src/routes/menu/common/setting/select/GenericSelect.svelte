@@ -52,28 +52,30 @@
     cursor: pointer;
     min-width: 250px;
     position: relative;
+    font-family: MyCustomFont;
 
     &.expanded {
       .header {
-        border-radius: 5px 5px 0 0;
+        border-radius: 7.5px 7.5px 7.5px 7.5px;
       }
     }
   }
 
   .header {
     background-color: $accent-color;
-    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 15px;
     display: flex;
-    column-gap: 20px;
+    column-gap: 15px;
     align-items: center;
     justify-content: space-between;
-    border-radius: 5px;
+    border-radius: 7.5px;
     transition: ease border-radius .2s;
 
     .title {
       color: $menu-text-color;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 6000;
     }
   }
 
@@ -81,9 +83,11 @@
     position: absolute;
     z-index: 1000;
     width: 100%;
-    border-radius: 0 0 5px 5px;
+    margin-top: 3px;
+    border-radius: 7.5px 7.5px 7.5px 7.5px;
     max-height: 250px;
     overflow: auto;
     background-color: rgba($menu-base-color, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 </style>

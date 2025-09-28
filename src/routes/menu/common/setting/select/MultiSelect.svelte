@@ -43,18 +43,21 @@
   @use "../../../../../colors.scss" as *;
 
   .option {
-    font-weight: 500;
+    font-weight: 600;
     color: $menu-text-dimmed-color;
     font-size: 20px;
-    padding: 15px 20px;
+    padding: 15px 15px;
     transition: ease color .2s;
+    font-family: MyCustomFont;
 
     &:hover {
       color: $menu-text-color;
+      text-shadow: 0 0 10px $menu-text-color;
     }
 
     &.active {
       color: $accent-color;
+      text-shadow: 0 0 10px $accent-color;
     }
   }
 </style>

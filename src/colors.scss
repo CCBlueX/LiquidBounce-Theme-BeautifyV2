@@ -1,41 +1,70 @@
-$accent-color: #4677ff;
+:root {
+  --accent-color: dodgerblue;
+}
 
-$clickgui-base-color: black;
-$clickgui-text-color: white;
-$clickgui-text-dimmed-color: rgba(211, 211, 211, 255);
-$clickgui-grid-color: rgba(128, 128, 128, 0.25);
+$accent-color: dodgerblue;
 
-$tabgui-base-color: black;
-$tabgui-text-color: white;
+$clickgui-base-color: rgba(14, 16, 20, 1);
+$clickgui-border-color: rgba(255, 255, 255, 0.125);
+$clickgui-text-color: rgba(225, 225, 225, 1);
+$clickgui-text-dimmed-color: rgba(160, 160, 180, 1);
+$clickgui-settings-color: rgba(18, 20, 22, 1);
+
+$modulecard-main-color: rgba(24, 26, 32, 1);
+$modulecard-hover-color: rgba(34, 36, 44, 1);
+
+$tabgui-base-color: rgba(14, 16, 20, 1);
+$tabgui-text-color: rgba(225, 225, 225, 1);
 $tabgui-text-dimmed-color: rgba(211, 211, 211, 255);
 
-$arraylist-base-color: black;
-$arraylist-text-color: white;
+$arraylist-base-color: rgba(14, 16, 20, 1);
+$arraylist-text-color: rgba(225, 225, 225, 1);
 $arraylist-tag-color: #AAAAAA;
 
-$targethud-base-color: black;
-$targethud-text-color: white;
+$targethud-base-color: rgba(14, 16, 20, 1);
+$targethud-text-color: rgba(225, 225, 225, 1);
 $targethud-text-dimmed-color: rgba(211, 211, 211, 255);
 
-$blockcounter-base-color: black;
+$blockcounter-base-color: rgba(14, 16, 20, 1);
 
-$hotbar-base-color: black;
-$hotbar-text-color: white;
+$hotbar-base-color: rgba(14, 16, 20, 1);
+$hotbar-text-color: rgba(225, 225, 225, 1);
 /* TODO: currently unused */
 $hotbar-experience-color: #88C657;
 $hotbar-health-color: #FC4130;
 $hotbar-hunger-color: #B88458;
 
+$inventory-base-color: rgba(14, 16, 20, 1);
+
 $menu-account-premium-color: #67D24A;
-$menu-base-color: black;
-$menu-text-color: white;
-$menu-text-dimmed-color: rgba(211, 211, 211, 255);
+$menu-base-color: rgba(14, 16, 20, 1);
+$menu-text-color: rgba(225, 225, 225, 1);
+$menu-text-dimmed-color: rgba(160, 160, 180, 1);
 $menu-error-color: #fc4130;
-$menu-button-loader-color: white;
+$menu-button-loader-color: rgba(225, 225, 225, 1);
 
-$scoreboard-base-color: black;
+$scoreboard-base-color: rgba(14, 16, 20, 1);
 
-$keystrokes-base-color: black;
-$keystrokes-text-color: white;
+$watermark-base-color: rgba(14, 16, 20, 1);
+
+$armoritems-base-color: rgba(14, 16, 20, 1);
+$armoritems-text-color: rgba(225, 225, 225, 1);
+
+$effects-base-color: rgba(14, 16, 20, 1);
+$effects-duration-color: rgba(150, 150, 150, 1);
+
+$notifications-base-color: rgba(14, 16, 20, 1);
+$notifications-text-color: rgba(225, 225, 225, 1);
+$notifications-text-dimmed-color: rgba(160, 160, 180, 1);
+
+$keystrokes-base-color: rgba(14, 16, 20, 1);
+$keystrokes-text-color: rgba(225, 225, 225, 1);
 
 $item-damage-base-color: black;
+
+$keybinds-base-color: rgba(14, 16, 20, 1);
+$keybinds-text-color: rgba(225, 225, 225, 1);
+$keybinds-text-dimmed-color: rgba(160, 160, 180, 1);
+
+$playercoords-base-color: rgba(14, 16, 20, 1);
+$playercoords-text-color: rgba(225, 225, 225, 1);

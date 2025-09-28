@@ -1,8 +1,8 @@
 {
-  "id": "liquidbounce",
-  "name": "LiquidBounce",
-  "version": "0.1.0",
-  "authors": ["CCBlueX"],
+  "id": "beautifyv2",
+  "name": "BeautifyV2",
+  "version": "2.0.0",
+  "authors": ["asitnix"],
   "screens": [
     "clickgui",
     "title",
@@ -35,7 +35,10 @@
     "Keystrokes",
     "Taco",
     "Image",
-    "Text"
+    "Text",
+    "KeyBinds",
+    "ClientVersion",
+    "PlayerCoordinates"
   ],
   "fonts": [
     "Inter-Black.ttf",

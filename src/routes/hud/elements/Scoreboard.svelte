@@ -3,8 +3,28 @@
     import type {PlayerData, Scoreboard} from "../../../integration/types";
     import TextComponent from "../../menu/common/TextComponent.svelte";
     import type {ClientPlayerDataEvent} from "../../../integration/events";
+    import {accentColorStore} from "../../../theme/accentColorStore";
+    import {onDestroy, onMount} from "svelte";
+    import {hexToRgbString} from "../../../integration/util";
+    import {getClickGuiColor} from "../../../integration/persistent_storage";
+
+    export let settings: { [name: string]: any };
 
     let scoreboard: Scoreboard | null = null;
+
+    let accentColor = "dodgerblue";
+    const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
+        accentColor = color;
+        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+    });
+
+    onMount(async () => {
+        accentColorStore.set(getClickGuiColor() ?? '#1e90ff');
+    });
+
+    onDestroy(() => {
+        unsubscribeAccent();
+    });
 
     listen("clientPlayerData", (e: ClientPlayerDataEvent) => {
         const playerData: PlayerData = e.playerData;
@@ -20,10 +40,18 @@
             </div>
         {/if}
         <div class="entries">
-            {#each scoreboard.entries as {name, score}}
+            {#each scoreboard.entries as {name, score}, i}
                 <div class="row">
-                    <TextComponent fontSize={14} allowPreformatting={true} textComponent={name}/>
-                    <TextComponent fontSize={14} allowPreformatting={true} textComponent={score}/>
+                    {#if i === scoreboard.entries.length - 1 && settings?.address}
+                        <div class="custom-ip">
+                            {settings.address}
+                        </div>
+                    {:else}
+                        <TextComponent fontSize={14} allowPreformatting={true} textComponent={name}/>
+                    {/if}
+                    <div class:hidden={!settings?.numbers}>
+                        <TextComponent fontSize={14} allowPreformatting={true} textComponent={score}/>
+                    </div>
                 </div>
             {/each}
         </div>
@@ -35,25 +63,49 @@
 
   .scoreboard {
     width: max-content;
-    border-radius: 5px;
+    border-radius: 7.5px;
     overflow: hidden;
     font-size: 14px;
+    font-family: MyCustomFont, sans-serif;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba($scoreboard-base-color, 0.25);
   }
 
   .entries {
-    background-color: rgba($scoreboard-base-color, 0.5);
-    padding: 10px;
+    background: linear-gradient(to bottom right, rgba($scoreboard-base-color, 0.45), rgba($scoreboard-base-color, 0.35));
+    padding: 5px 10px;
   }
 
   .row {
     display: flex;
     column-gap: 15px;
     justify-content: space-between;
+    align-items: center;
+    padding: 3px 0;
+    transition: all 0.15s ease;
   }
 
   .header {
     text-align: center;
-    background-color: rgba($scoreboard-base-color, 0.68);
-    padding: 7px 10px;
+    background: linear-gradient(145deg, rgba($notifications-base-color, 0.8), rgba($notifications-base-color, 0.6));
+    padding: 7px 12px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 8px rgba(var(--accent-color), 0.9);
+  }
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .custom-ip {
+    color: rgba(var(--accent-color), 1);
+    text-shadow: 0 0 10px rgba(var(--accent-color), 0.9);
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 0.5px;
   }
 </style>

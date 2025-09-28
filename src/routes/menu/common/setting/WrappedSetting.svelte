@@ -5,6 +5,10 @@
     import GenericSetting from "../../../clickgui/setting/common/GenericSetting.svelte";
     import {quintOut} from "svelte/easing";
     import {convertToSpacedString} from "../../../../theme/theme_config";
+    import {accentColorStore} from "../../../../theme/accentColorStore";
+    import {hexToRgbString} from "../../../../integration/util";
+    import {onDestroy, onMount} from "svelte";
+    import {getClickGuiColor} from "../../../../integration/persistent_storage";
 
     interface Props {
         value: NesterSetting,
@@ -43,6 +47,20 @@
             expanded = false;
         }
     }
+
+    let accentColor = "dodgerblue";
+    const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
+        accentColor = color;
+        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+    });
+
+    onMount(async () => {
+        accentColorStore.set(getClickGuiColor() ?? '#1e90ff');
+    });
+
+    onDestroy(() => {
+        unsubscribeAccent();
+    });
 </script>
 
 <svelte:window on:click={handleWindowClick}/>
@@ -67,7 +85,7 @@
     {#if expanded && value.value.length > 0}
         <div class="nested-settings" transition:fade|global={{ duration: 200, easing: quintOut }}>
             {#each value.value as setting, i (setting.name)}
-                <GenericSetting {path} bind:setting={value.value[i]} on:change/>
+                <GenericSetting {path} bind:setting={value.value[i]} moduleName={value.name} on:change/>
             {/each}
         </div>
     {/if}
@@ -79,16 +97,17 @@
   .configurable-title {
     color: $menu-text-color;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .wrapped-setting {
     position: relative;
     min-width: 300px;
+    font-family: MyCustomFont;
 
     &.expanded {
       .header {
-        border-radius: 5px 5px 0 0;
+        border-radius: 0 0 7.5px 7.5px;
       }
     }
 
@@ -96,13 +115,15 @@
       cursor: pointer;
 
       .header {
-        background-color: rgba($menu-base-color, .36);
-        padding: 20px;
+        background-color: rgba($menu-base-color, .75);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        padding: 15px;
         display: flex;
-        column-gap: 20px;
+        column-gap: 15px;
         align-items: center;
         justify-content: space-between;
-        border-radius: 5px;
+        border-radius: 7.5px;
         transition: ease border-radius .2s;
       }
     }
@@ -111,11 +132,12 @@
   .nested-settings {
     position: absolute;
     z-index: 1000;
-    border-radius: 0 0 5px 5px;
+    border-radius: 7.5px 7.5px 7.5px 7.5px;
+    margin-top: 3px;
     background-color: rgba($menu-base-color, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 10px 13px;
     zoom: 1.5;
     width: 100%;
   }
 </style>
-

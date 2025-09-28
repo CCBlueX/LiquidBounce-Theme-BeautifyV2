@@ -65,4 +65,8 @@
     margin-bottom: 60px;
     align-items: center;
   }
+
+  .logo {
+    opacity: 0;
+  }
 </style>

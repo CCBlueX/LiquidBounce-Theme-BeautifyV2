@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {onMount} from "svelte";
+    import {onMount, onDestroy} from "svelte";
     import type {Module as TModule} from "../../integration/types";
     import {listen} from "../../integration/ws";
     import Module from "./Module.svelte";
@@ -62,7 +62,6 @@
         } else {
             const config: PanelConfig = JSON.parse(localStorageItem);
 
-            // Migration
             if (!config.zIndex) {
                 config.zIndex = 0;
             }
@@ -94,7 +93,7 @@
         offsetX = e.clientX * (2 / $scaleFactor) - panelConfig.left;
         offsetY = e.clientY * (2 / $scaleFactor) - panelConfig.top;
         panelConfig.zIndex = ++$maxPanelZIndex;
-        
+
         $showGrid = $snappingEnabled && !expandButtonElement.contains(e.target as HTMLElement);
     }
 
@@ -150,12 +149,7 @@
     listen("moduleToggle", (e: ModuleToggleEvent) => {
         const moduleName = e.moduleName;
         const moduleEnabled = e.enabled;
-
-        const mod = modules.find((m) => m.name === moduleName);
-        if (!mod) return;
-
-        mod.enabled = moduleEnabled;
-        modules = modules;
+        modules = modules.map(m => m.name === moduleName ? { ...m, enabled: moduleEnabled } : m);
     });
 
     onMount(() => {
@@ -166,6 +160,16 @@
         modulesElement.scrollTo({
             top: panelConfig.scrollTop,
             behavior: "smooth"
+        });
+
+        window.addEventListener('moduleSettingsChanged', () => {
+            modules = [...modules];
+        });
+    });
+
+    onDestroy(() => {
+        window.removeEventListener('moduleSettingsChanged', () => {
+            modules = [...modules];
         });
     });
 
@@ -231,7 +235,7 @@
   @use "../../colors.scss" as *;
 
   .panel {
-    border-radius: 5px;
+    border-radius: 10px;
     width: 250px;
     position: absolute;
     overflow: hidden;
@@ -247,7 +251,7 @@
     align-items: center;
     column-gap: 12px;
     background-color: rgba($clickgui-base-color, 0.9);
-    border-bottom: solid 2px $accent-color;
+    border-bottom: solid 2px rgba(var(--accent-color), 1);
     padding: 10px 15px;
     cursor: grab;
 

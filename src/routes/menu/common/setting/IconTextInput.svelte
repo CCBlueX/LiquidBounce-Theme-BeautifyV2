@@ -22,41 +22,72 @@
 </div>
 
 <style lang="scss">
+  @use "sass:color";
   @use "../../../../colors.scss" as *;
 
   .icon-text-input {
     display: grid;
     grid-template-columns: max-content 1fr max-content;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba($accent-color, 0.25);
+    transition: box-shadow 0.25s ease;
+
+    &:focus-within {
+      box-shadow: 0 0 12px rgba($accent-color, 0.7);
+    }
   }
 
   .icon {
     height: 64px;
     width: 64px;
-    background-color: $accent-color;
+    background: linear-gradient(145deg, color.adjust($accent-color, $lightness: 10%), color.adjust($accent-color, $lightness: -5%));
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px 0 0 5px;
+    border-right: solid 2px rgba($menu-base-color, 0.6);
+
+    img {
+      height: 28px;
+      width: 28px;
+      filter: drop-shadow(0 0 4px rgba($menu-text-color, 0.6));
+    }
   }
 
   .input {
     color: $menu-text-color;
-    font-family: "Inter", sans-serif;
-    font-size: 20px;
+    font-family: MyCustomFont;
+    font-size: 18px;
     background-color: rgba($menu-base-color, .36);
     border: none;
-    padding: 0 20px 0 18px;
-    border-radius: 0 5px 5px 0;
-    border-left: solid 2px $menu-base-color;
+    padding: 0 15px;
+    height: 64px;
     width: 100%;
+    outline: none;
+    transition: background-color 0.25s ease, border 0.25s ease;
+
+    &::placeholder {
+      color: rgba($menu-text-color, 0.5);
+    }
+
+    &:focus {
+      background-color: rgba($menu-base-color, 0.55);
+    }
 
     &:invalid {
       border: solid 2px $menu-error-color;
+      background-color: rgba($menu-error-color, 0.1);
     }
   }
 
   .button-container {
     display: flex;
     align-items: center;
+    padding-right: 12px;
+
+    > * {
+      margin-left: 8px;
+    }
   }
 </style>

@@ -41,31 +41,91 @@
 
   .available-tabs {
     display: flex;
-    column-gap: 10px;
+    column-gap: 15px;
     margin-bottom: 40px;
   }
 
   .tab-button {
-    font-family: "Inter", sans-serif;
-    background-color: rgba($menu-base-color, .36);
+    font-family: MyCustomFont;
+    background: linear-gradient(to top, rgba($menu-base-color, .36), rgba($menu-base-color, .5));
     color: $menu-text-color;
     padding: 10px;
     border: solid 2px transparent;
-    border-radius: 5px;
+    border-radius: 7.5px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
     cursor: pointer;
-    transition: ease border-color .2s;
+    transition: border-color .25s ease, background-color .25s ease, transform .2s ease, box-shadow .25s ease;
+
+    .icon-wrapper {
+      background-color: rgba($accent-color, .15);
+      border-radius: 50%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color .25s ease;
+    }
 
     .icon {
       height: 30px;
+      filter: drop-shadow(0 0 3px rgba($accent-color, .4));
+      transition: transform .25s ease;
+    }
+
+    .tab-title {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      transition: color .25s ease;
+    }
+
+    &:hover {
+      border-color: rgba($accent-color, .6);
+      background-color: rgba($menu-base-color, .55);
+      box-shadow: 0 4px 12px rgba($accent-color, 0.25);
+
+      .icon {
+        transform: scale(1.1);
+      }
+
+      .icon-wrapper {
+        background-color: rgba($accent-color, .25);
+      }
     }
 
     &.active {
       border-color: $accent-color;
+      background-color: rgba($menu-base-color, .65);
+      box-shadow: 0 0 15px rgba($accent-color, .4);
+
+      .tab-title {
+        color: $accent-color;
+        text-shadow: 0 0 8px rgba($accent-color, .8);
+      }
+
+      .icon {
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 6px rgba($accent-color, .9));
+      }
+    }
+  }
+
+  .tab-content {
+    animation: fadeIn .3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 </style>

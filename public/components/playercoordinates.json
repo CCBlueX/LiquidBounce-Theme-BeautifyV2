@@ -1,0 +1,11 @@
+{
+  "name": "PlayerCoordinates",
+  "enabled": true,
+  "singleton": true,
+  "alignment": {
+    "horizontalAlignment": "Left",
+    "horizontalOffset": 10,
+    "verticalAlignment": "Bottom",
+    "verticalOffset": -10
+  }
+}

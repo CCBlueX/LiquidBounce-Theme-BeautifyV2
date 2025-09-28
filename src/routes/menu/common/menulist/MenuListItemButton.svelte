@@ -23,7 +23,7 @@
   }
 
   .icon {
-    height: 27px;
-    width: 27px;
+    height: 25px;
+    width: 25px;
   }
 </style>

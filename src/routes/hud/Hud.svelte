@@ -20,6 +20,9 @@
     import Text from "./elements/Text.svelte";
     import CraftingInput from "./elements/inventory/CraftingInput.svelte";
     import DraggableComponent from "./elements/DraggableComponent.svelte";
+    import KeyBinds from "./elements/KeyBinds.svelte";
+    import ClientVersion from "./elements/ClientVersion.svelte";
+    import PlayerCoordinates from "./elements/PlayerCoordinates.svelte";
 
     let zoom = 100;
     let metadata: Metadata;
@@ -68,7 +71,7 @@
                 {:else if c.name === "Hotbar"}
                     <HotBar/>
                 {:else if c.name === "Scoreboard"}
-                    <Scoreboard/>
+                    <Scoreboard settings={c.settings} />
                 {:else if c.name === "ArmorItems"}
                     <ArmorItems/>
                 {:else if c.name === "Inventory"}
@@ -85,6 +88,12 @@
                     <Text settings={c.settings} />
                 {:else if c.name === "Image"}
                     <img alt="" src="{c.settings.uRL}" style="scale: {c.settings.scale};">
+                {:else if c.name === "KeyBinds"}
+                    <KeyBinds/>
+                {:else if c.name === "ClientVersion"}
+                    <ClientVersion/>
+                {:else if c.name === "PlayerCoordinates"}
+                    <PlayerCoordinates/>
                 {/if}
             </DraggableComponent>
         {/if}

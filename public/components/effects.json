@@ -3,10 +3,10 @@
   "enabled": true,
   "singleton": true,
   "alignment": {
-    "horizontalAlignment": "Right",
-    "horizontalOffset": 15,
-    "verticalAlignment": "Bottom",
-    "verticalOffset": 15
+    "horizontalAlignment": "Left",
+    "horizontalOffset": 500,
+    "verticalAlignment": "Top",
+    "verticalOffset": 10
   },
   "tweaks": ["DISABLE_STATUS_EFFECT_OVERLAY"]
 }

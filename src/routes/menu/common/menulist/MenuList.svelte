@@ -47,10 +47,11 @@
   @use "../../../../colors.scss" as *;
 
   .menu-list {
-    background-color: rgba($menu-base-color, 0.68);
+    background-color: rgba($menu-base-color, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     flex: 1;
-    border-radius: 5px;
-    margin-bottom: 25px;
+    border-radius: 7.5px;
+    margin-bottom: 20px;
     position: relative;
   }
 </style>

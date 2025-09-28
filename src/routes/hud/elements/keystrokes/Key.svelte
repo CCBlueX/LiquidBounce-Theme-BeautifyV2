@@ -2,11 +2,29 @@
     import {listen} from "../../../../integration/ws";
     import type {KeyEvent} from "../../../../integration/events";
     import type {MinecraftKeybind} from "../../../../integration/types";
+    import {accentColorStore} from "../../../../theme/accentColorStore";
+    import {hexToRgbString} from "../../../../integration/util";
+    import {onDestroy, onMount} from "svelte";
 
     export let gridArea: string;
     export let key: MinecraftKeybind | undefined;
 
     let active = false;
+    let keyElement: HTMLElement;
+
+    let accentColor = "dodgerblue";
+    const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
+        accentColor = hexToRgbString(color);
+        if (keyElement) keyElement.style.setProperty('--accent-color', accentColor);
+    });
+
+    onMount(() => {
+        if (keyElement) keyElement.style.setProperty('--accent-color', accentColor);
+    });
+
+    onDestroy(() => {
+        unsubscribeAccent();
+    });
 
     listen("key", (e: KeyEvent) => {
         if (e.key !== key?.key.translationKey) {
@@ -17,7 +35,8 @@
     });
 </script>
 
-<div class="key" style="grid-area: {gridArea};" class:active>
+<div class="key" bind:this={keyElement}
+     style="grid-area: {gridArea};" class:active>
     {key?.key.localized ?? "???"}
 </div>
 
@@ -26,21 +45,39 @@
 
   .key {
     height: 50px;
-    background-color: rgba($keystrokes-base-color, .68);
+    background: rgba($keystrokes-base-color, 0.5);
     color: $keystrokes-text-color;
+    border: 1px solid rgba(150, 150, 150, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 7.5px;
     font-size: 14px;
-    font-weight: 500;
-    transition: ease box-shadow .2s;
+    font-weight: 700;
+    transition: all 0.25s ease;
     position: relative;
-    box-shadow: inset 0 0 0 0 $accent-color;
     text-align: center;
+    user-select: none;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 0 0 0 rgba(var(--accent-color), 0.5);
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: 0 0 8px rgba(var(--accent-color), 0.35);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
 
     &.active {
-      box-shadow: inset 0 0 0 25px $accent-color;
+      transform: scale(0.95);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 0 15px rgba(var(--accent-color), 0.75);
+
+      &::after {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(var(--accent-color), 0.75);
+      }
     }
   }
 </style>

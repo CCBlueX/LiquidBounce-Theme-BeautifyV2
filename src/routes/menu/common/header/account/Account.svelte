@@ -168,53 +168,65 @@
   @use "../../../../../colors" as *;
 
   .account {
-    width: 488px;
+    width: 420px;
     position: relative;
+    font-family: MyCustomFont;
 
     &.expanded {
       .header {
-        border-radius: 5px 5px 0 0;
+        border-radius: 7.5px 7.5px 7.5px 7.5px;
       }
     }
   }
 
   .header {
-    background-color: rgba($hotbar-base-color, 0.68);
-    padding: 15px 18px;
-    border-radius: 5px;
-    align-items: center;
+    background: rgba($menu-base-color, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    border-radius: 7.5px;
     display: grid;
     grid-template-areas:
-        "a b c"
-        "a d c";
+      "a b c"
+      "a d c";
     grid-template-columns: max-content 1fr max-content;
-    column-gap: 15px;
+    column-gap: 12px;
     cursor: pointer;
-    transition: ease border-radius .2s;
+    transition: border-radius .25s ease;
 
     .avatar {
-      height: 68px;
-      width: 68px;
+      height: 60px;
+      width: 60px;
       border-radius: 50%;
       grid-area: a;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.25s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        border-color: $accent-color;
+        box-shadow: 0 0 15px rgba($accent-color, 0.65);
+      }
     }
 
     .username {
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 18px;
       color: $menu-text-color;
-      font-size: 20px;
       grid-area: b;
       align-self: flex-end;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     }
 
     .account-type {
-      font-weight: 500;
-      font-size: 20px;
+      font-weight: 600;
+      font-size: 17px;
       grid-area: d;
       align-self: flex-start;
 
       .premium {
         color: $menu-account-premium-color;
+        font-weight: 700;
+        text-shadow: 0 0 6px rgba($menu-account-premium-color, 0.5);
       }
 
       .offline {
@@ -225,22 +237,31 @@
     .buttons {
       grid-area: c;
       display: flex;
-      column-gap: 20px;
-      align-items: center;
-    }
-
-    .icon-button {
-      background-color: transparent;
-      border: none;
-      position: relative;
-      height: max-content;
-      cursor: pointer;
-      display: flex;
+      column-gap: 15px;
       align-items: center;
 
-      &:disabled {
-        pointer-events: none;
-        opacity: .5;
+      .icon-button {
+        background: rgba($accent-color, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 7.5px;
+        padding: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+
+        &:hover {
+          background: rgba($accent-color, 0.25);
+          border: 1px solid rgba($accent-color, 0.5);
+          box-shadow: 0 0 8px rgba($accent-color, 0.5);
+        }
+
+        &:disabled {
+          opacity: 0.4;
+        }
       }
     }
   }
@@ -249,69 +270,100 @@
     position: absolute;
     z-index: 1000;
     width: 100%;
-    border-radius: 0 0 5px 5px;
-    background-color: rgba($menu-base-color, 0.9);
+    border-radius: 7.5px 7.5px 7.5px 7.5px;
+    background: rgba($menu-base-color, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 2px;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    animation: fadeIn 0.25s ease;
 
     .placeholder {
       font-weight: 500;
-      font-size: 20px;
+      font-size: 18px;
       color: $menu-text-dimmed-color;
-      padding: 15px 20px;
+      padding: 20px;
+      text-align: center;
     }
 
     .account-search {
-      background-color: rgba($menu-base-color, .36);
+      background: rgba($menu-base-color, 0.5);
       border: none;
       color: $menu-text-color;
-      font-family: "Inter", sans-serif;
-      padding: 15px 15px 15px 50px;
+      padding: 14px 14px 14px 48px;
       width: 100%;
-      font-size: 18px;
-      border-bottom: solid 4px $accent-color;
-      background-image: url("/img/menu/icon-search.svg");
-      background-repeat: no-repeat;
-      background-position: 18px center;
+      font-size: 16px;
       background-size: 18px 18px;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &:focus {
+        background: rgba($menu-base-color, 0.55);
+        background-image: url("/img/menu/icon-search.svg");
+        background-repeat: no-repeat;
+        background-position: 12px center;
+      }
     }
 
     .account-list {
-      max-height: 350px;
-      overflow: auto;
+      max-height: 340px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgba($accent-color, 0.4);
+        border-radius: 3px;
+      }
     }
 
     .account-item {
       color: $menu-text-dimmed-color;
-      font-size: 20px;
-      padding: 15px 20px;
-      transition: ease color .2s;
+      font-size: 18px;
+      padding: 14px 18px;
       cursor: pointer;
       display: grid;
       grid-template-areas:
         "a b"
         "a c";
       grid-template-columns: max-content 1fr;
-      column-gap: 15px;
+      column-gap: 12px;
+      align-items: center;
+      transition: all 0.25s ease;
 
       .username {
         grid-area: b;
         font-weight: 600;
-        font-size: 20px;
-        transition: ease color .2s;
+        font-size: 18px;
+        transition: color 0.25s ease;
       }
 
       .type {
         grid-area: c;
+        font-size: 14px;
+        opacity: 1;
       }
 
       &:hover {
+        background: rgba($accent-color, 0.1);
         color: $menu-text-color;
+        border: 1px solid rgba($accent-color, 0.5);
       }
 
       &.active {
+        background: rgba($accent-color, 0.15);
+        border-left: 3px solid $accent-color;
+
         .username {
           color: $accent-color;
         }
       }
     }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>

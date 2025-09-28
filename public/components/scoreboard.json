@@ -4,9 +4,21 @@
   "singleton": true,
   "alignment": {
     "horizontalAlignment": "Left",
-    "horizontalOffset": 15,
+    "horizontalOffset": 10,
     "verticalAlignment": "CenterTranslated",
     "verticalOffset": 0
   },
+  "values": [
+    {
+      "type": "BOOLEAN",
+      "name": "Numbers",
+      "value": false
+    },
+    {
+      "type": "TEXT",
+      "name": "Address",
+      "value": "www.liquidbounce.net"
+    }
+  ],
   "tweaks": ["DISABLE_SCOREBOARD"]
 }

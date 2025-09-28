@@ -1,0 +1,11 @@
+{
+  "name": "KeyBinds",
+  "enabled": true,
+  "singleton": true,
+  "alignment": {
+    "horizontalAlignment": "Right",
+    "horizontalOffset": 500,
+    "verticalAlignment": "Top",
+    "verticalOffset": 10
+  }
+}

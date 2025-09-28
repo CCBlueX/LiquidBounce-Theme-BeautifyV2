@@ -36,33 +36,59 @@
   .button-setting {
     position: relative;
     border: none;
-    background-color: $accent-color;
+    outline: none;
+    background: linear-gradient(145deg, color.adjust($accent-color, $lightness: 10%), $accent-color);
     color: $menu-text-color;
-    font-family: "Inter", sans-serif;
-    padding: 20px;
-    border-radius: 5px;
-    font-size: 20px;
-    transition: ease background-color .2s, ease opacity .2s;
+    font-family: MyCustomFont;
+    padding: 16px 28px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 0 10px rgba($accent-color, 0.5);
+
+    .title {
+      position: relative;
+      z-index: 2;
+    }
+
+    &:not([disabled]):hover {
+      transform: translateY(-2px);
+      background: linear-gradient(145deg, color.adjust($accent-color, $lightness: 15%), color.adjust($accent-color, $lightness: -5%));
+      box-shadow: 0 0 15px rgba($accent-color, 0.75);
+      cursor: pointer;
+    }
+
+    &:not([disabled]):active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 0 6px rgba($accent-color, 0.6);
+    }
+
+    &.secondary {
+      background: rgba($menu-base-color, 0.35);
+      color: $menu-text-color;
+      box-shadow: none;
+
+      &:not([disabled]):hover {
+        background: rgba($menu-base-color, 0.5);
+        box-shadow: inset 0 0 8px rgba($accent-color, 0.4);
+      }
+    }
 
     &.inset {
       margin: 0 30px;
     }
 
-    &.secondary {
-      background-color: rgba($menu-base-color, .36);
-    }
-
-    &:not([disabled]):hover {
-      background-color: color.adjust(color.adjust($accent-color, $saturation: -30%), $lightness: -10%);
-      cursor: pointer;
-
-      &.secondary {
-        background-color: color.adjust(color.adjust($menu-base-color, $saturation: -30%), $lightness: -10%);
-      }
-    }
-
     &[disabled] {
-      opacity: .6;
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
     }
   }
 </style>

@@ -54,16 +54,22 @@
         "a b c"
         "a d c";
     grid-template-columns: max-content 1fr max-content;
-    background-color: rgba($menu-base-color, .36);
+    background: rgba($menu-base-color, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 15px 25px;
     column-gap: 15px;
-    border-radius: 5px;
-    transition: ease background-color .2s;
+    border-radius: 7.5px;
+    transition: background-color .25s ease, transform .25s ease, box-shadow .25s ease;
     align-items: center;
     cursor: grab;
+    position: relative;
+    font-family: MyCustomFont;
+    font-weight: 600;
 
     &:hover {
-      background-color: $accent-color;
+      background: rgba($menu-base-color, 0.9);
+      box-shadow: 0 6px 16px rgba($accent-color, .5);
+      border-color: $accent-color;
 
       .subtitle {
         color: $menu-text-color;
@@ -72,6 +78,10 @@
       .buttons .active {
         opacity: 1;
       }
+    }
+
+    &:active {
+      transform: scale(.98);
     }
   }
 
@@ -87,27 +97,36 @@
     }
 
     .preview {
-      height: 68px;
-      width: 68px;
+      height: 70px;
+      width: 70px;
       border-radius: 50%;
-      image-rendering: pixelated;
+      object-fit: cover;
+      filter: drop-shadow(0 2px 8px rgba($accent-color, 0.5));
+      transition: transform .25s ease;
+    }
+
+    .menu-list-item:hover & .preview {
     }
 
     .favorite-mark {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: -8px;
+      right: -8px;
+      height: 24px;
+      width: 24px;
+      filter: drop-shadow(0 0 6px rgba($accent-color, .7));
     }
 
     .text {
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: -8px;
+      right: -8px;
       display: none;
       color: $menu-text-color;
       font-size: 12px;
-      padding: 3px 10px;
-      border-radius: 20px;
+      padding: 4px 12px;
+      border-radius: 7.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 
       &.visible {
         display: block;
@@ -125,25 +144,32 @@
       font-size: 20px;
       color: $menu-text-color;
       font-weight: 600;
+      letter-spacing: .5px;
+      transition: color .25s ease;
+    }
+
+    slot[name="tag"] {
+      margin-left: 10px;
     }
   }
 
   .subtitle {
     grid-area: d;
-    font-size: 18px;
+    font-size: 16px;
     color: $menu-text-dimmed-color;
-    transition: ease color .2s;
+    transition: color .25s ease;
     align-self: flex-start;
   }
 
   .buttons {
     grid-area: c;
     display: flex;
+    align-items: center;
 
     .active {
       margin-right: 20px;
       opacity: 0;
-      transition: ease opacity .2s;
+      transition: opacity .25s ease;
     }
   }
 </style>

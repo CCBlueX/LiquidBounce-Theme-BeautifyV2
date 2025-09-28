@@ -1,6 +1,5 @@
 <script lang="ts">
     import MainButton from "./buttons/MainButton.svelte";
-    import ChildButton from "./buttons/ChildButton.svelte";
     import ButtonContainer from "../common/buttons/ButtonContainer.svelte";
     import IconTextButton from "../common/buttons/IconTextButton.svelte";
     import IconButton from "../common/buttons/IconButton.svelte";
@@ -51,6 +50,7 @@
 
 <Menu>
     <div class="content">
+        <img class="logo" transition:fly|global={{duration: 500, y: -100}} src="img/lb-logo.svg" alt="logo">
         <div class="main-buttons">
             {#if regularButtonsShown}
                 <MainButton title="Singleplayer" icon="singleplayer" index={0}
@@ -58,8 +58,6 @@
 
                 <MainButton title="Multiplayer" icon="multiplayer" let:parentHovered
                             on:click={() => openScreen("multiplayer")} index={1}>
-                    <ChildButton title="Realms" icon="realms" {parentHovered}
-                                 on:click={() => openScreen("multiplayer_realms")}/>
                 </MainButton>
                 <MainButton title="LiquidBounce" icon="liquidbounce" on:click={toggleButtons} index={2}/>
                 <MainButton title="Options" icon="options" on:click={() => openScreen("options")} index={3}/>
@@ -72,15 +70,13 @@
             {/if}
         </div>
 
-        <div class="additional-buttons" transition:fly|global={{duration: 700, y: 100}}>
+        <div class="additional-buttons" transition:fly|global={{duration: 700, y: -100}}>
             <ButtonContainer>
                 <IconTextButton icon="icon-exit.svg" title="Exit" on:click={exitClient}/>
-                <IconTextButton icon="icon-change-background.svg" title="Toggle Shader"
-                                on:click={toggleBackgroundShaderEnabled}/>
             </ButtonContainer>
         </div>
 
-        <div class="social-buttons" transition:fly|global={{duration: 700, y: 100}}>
+        <div class="social-buttons" transition:fly|global={{duration: 700, y: -100}}>
             <ButtonContainer>
                 <IconButton title="Forum" icon="nodebb" on:click={() => browse("MAINTAINER_FORUM")}/>
                 <IconButton title="GitHub" icon="github" on:click={() => browse("MAINTAINER_GITHUB")}/>
@@ -107,8 +103,12 @@
 
     .main-buttons {
         display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
         flex-direction: column;
-        row-gap: 25px;
+        row-gap: 15px;
         grid-area: a;
     }
 
@@ -118,5 +118,12 @@
 
     .social-buttons {
         grid-area: c;
+    }
+
+    .logo {
+        position: fixed;
+        top: 22.5%;
+        left: 50%;
+        translate: -50% -50%;
     }
 </style>

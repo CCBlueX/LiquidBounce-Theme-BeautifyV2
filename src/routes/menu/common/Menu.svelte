@@ -32,6 +32,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    //background-image: url('https://thespawnchunks.com/wp-content/uploads/2024/10/2024-10-07_08.46.55.jpeg');
   }
 
   .menu-wrapper {

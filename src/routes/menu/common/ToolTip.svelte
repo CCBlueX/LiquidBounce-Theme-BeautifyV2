@@ -31,8 +31,8 @@
   .tooltip {
     color: white;
     padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 14px;
     font-weight: 600;
     position: absolute;
     white-space: nowrap;
@@ -40,6 +40,7 @@
     top: 0;
     transform: translate(-50%, -45px);
     z-index: 1000;
+    font-family: MyCustomFont;
 
     &::after {
       content: "";

@@ -1,14 +1,31 @@
 <script lang="ts">
-    import {onMount, tick} from "svelte";
+    import {onMount, tick, onDestroy} from "svelte";
     import type {Module} from "../../../integration/types";
     import {getModules} from "../../../integration/rest";
     import {listen} from "../../../integration/ws";
     import {getTextWidth} from "../../../integration/text_measurement";
     import {flip} from "svelte/animate";
-    import {fly} from "svelte/transition";
+    import {fly, scale} from "svelte/transition";
     import {convertToSpacedString, spaceSeperatedNames} from "../../../theme/theme_config";
+    import {accentColorStore} from '../../../theme/accentColorStore';
+    import {hexToRgbString} from "../../../integration/util";
 
     let enabledModules: Module[] = [];
+    let arraylist: HTMLElement;
+
+    let accentColor = "dodgerblue";
+    const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
+        accentColor = hexToRgbString(color);
+        if (arraylist) arraylist.style.setProperty('--accent-color', accentColor);
+    });
+
+    onMount(() => {
+        if (arraylist) arraylist.style.setProperty('--accent-color', accentColor);
+    });
+
+    onDestroy(() => {
+        unsubscribeAccent();
+    });
 
     async function updateEnabledModules() {
         const modules = await getModules();
@@ -48,9 +65,9 @@
     });
 </script>
 
-<div class="arraylist">
+<div class="arraylist" bind:this={arraylist}>
     {#each enabledModules as {name, tag} (name)}
-        <div class="module" animate:flip={{ duration: 200 }} transition:fly={{ x: 50, duration: 200 }}>
+        <div class="module" animate:flip={{ duration: 200 }} transition:scale={{ duration: 200, start: 0.8 }}>
             {$spaceSeperatedNames ? convertToSpacedString(name) : name}
             {#if tag}
                 <span class="tag"> {tag}</span>
@@ -62,19 +79,47 @@
 <style lang="scss">
   @use "../../../colors.scss" as *;
 
+  .arraylist {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   .module {
-    background-color: rgba($arraylist-base-color, 0.68);
-    color: $arraylist-text-color;
-    font-size: 14px;
-    border-radius: 4px 0 0 4px;
-    padding: 5px 8px;
-    border-left: solid 4px $accent-color;
-    width: max-content;
-    font-weight: 500;
+    position: relative;
     margin-left: auto;
+    padding: 3px 6px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: MyCustomFont;
+    border-radius: 4px 0 0 4px;
+    background: rgba($arraylist-base-color, 0.45);
+    color: rgba(var(--accent-color), 1);
+    text-shadow: 0 0 8px rgba(var(--accent-color), 0.75);
+    width: max-content;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 5%;
+      bottom: 5%;
+      width: 2px;
+      border-radius: 2px;
+      background: rgba(var(--accent-color), 1);
+      box-shadow: 0 0 6px rgba(var(--accent-color), 0.75);
+    }
   }
 
   .tag {
     color: $arraylist-tag-color;
+    text-shadow: none;
+  }
+
+  @font-face {
+    font-family: "MyCustomFont";
+    src: url("/fonts/Montserrat-VariableFont_wght.ttf");
+    font-weight: normal;
+    font-style: normal;
   }
 </style>
