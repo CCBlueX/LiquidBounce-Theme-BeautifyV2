@@ -21,7 +21,6 @@
     import CraftingInput from "./elements/inventory/CraftingInput.svelte";
     import DraggableComponent from "./elements/DraggableComponent.svelte";
     import KeyBinds from "./elements/KeyBinds.svelte";
-    import ClientVersion from "./elements/ClientVersion.svelte";
     import PlayerCoordinates from "./elements/PlayerCoordinates.svelte";
 
     let zoom = 100;
@@ -90,8 +89,6 @@
                     <img alt="" src="{c.settings.uRL}" style="scale: {c.settings.scale};">
                 {:else if c.name === "KeyBinds"}
                     <KeyBinds/>
-                {:else if c.name === "ClientVersion"}
-                    <ClientVersion/>
                 {:else if c.name === "PlayerCoordinates"}
                     <PlayerCoordinates/>
                 {/if}

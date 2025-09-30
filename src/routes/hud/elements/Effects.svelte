@@ -67,10 +67,13 @@
     {#if effects.length > 0}
         {#each effects as e}
             <div class="effect">
-                <img class="effect-icon" src={"img/hud/effects/icon-" + e.localizedName.replace(' ', '_').toLowerCase() + ".png"} />
+                <img class="effect-icon" src={"img/hud/effects/icon-" + e.effect.replace("minecraft:", "") + ".png"} />
                 <div class="text">
                     <span class="name" style="color: {'#' + e.color.toString(16)}">
-                        {e.localizedName} {convertToRoman(e.amplifier)}
+                        {e.localizedName}
+                            {#if e.amplifier > 0}
+                        {e.amplifier + 1}
+                      {/if}
                     </span>
                 </div>
                 <span class="duration {(e.duration > 0 && e.duration / 20 <= 4) ? 'blinking' : ''}">{formatTime(e.duration)}</span>
