@@ -17,7 +17,9 @@
     let playerData: PlayerData;
 
     function startHideTimeout() {
-        hideTimeout = setTimeout(() => (visible = false), 800);
+        hideTimeout = setTimeout(() => {
+            visible = false;
+        }, 1000);
     }
 
     listen("targetChange", (data: TargetChangeEvent) => {
