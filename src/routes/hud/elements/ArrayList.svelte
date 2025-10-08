@@ -37,7 +37,7 @@
 
                 return {
                     ...module,
-                    width: getTextWidth(fullName, "500 14px Inter")
+                    width: getTextWidth(fullName, "600 15px MyCustomFont")
                 };
             }
         );
