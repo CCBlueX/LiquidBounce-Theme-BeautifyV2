@@ -94,8 +94,9 @@
 <style lang="scss">
   @use "../../../../colors.scss" as *;
 
+
   .configurable-title {
-    color: $menu-text-color;
+    color: var(--menu-text-color);
     font-size: 20px;
     font-weight: 600;
   }

@@ -43,6 +43,7 @@
 <style lang="scss">
   @use "../../../../colors.scss" as *;
 
+
   .value {
     font-family: monospace;
     color: $clickgui-text-color;

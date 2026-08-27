@@ -3,7 +3,7 @@
     import type {Module as TModule} from "../../integration/types";
     import {listen} from "../../integration/ws";
     import Module from "./Module.svelte";
-    import type {ModuleToggleEvent} from "../../integration/events";
+    import type {KeyboardKeyEvent, ModuleToggleEvent} from "../../integration/events";
     import {fade} from "svelte/transition";
     import {quintOut} from "svelte/easing";
     import {
@@ -173,17 +173,11 @@
         });
     });
 
-    function handleKeydown(e: KeyboardEvent) {
-        if (e.key === "Shift") {
-            ignoreGrid = true;
+    listen("keyboardKey", (e: KeyboardKeyEvent) => {
+        if (e.key === "key.keyboard.left.shift") {
+            ignoreGrid = e.action === 1;
         }
-    }
-
-    function handleKeyup(e: KeyboardEvent) {
-        if (e.key === "Shift") {
-            ignoreGrid = false;
-        }
-    }
+    });
 
     function snapToGrid(value: number): number {
         if (ignoreGrid || !$snappingEnabled) return value;
@@ -192,7 +186,7 @@
     }
 </script>
 
-<svelte:window on:mouseup={onMouseUp} on:mousemove={onMouseMove} on:keydown={handleKeydown} on:keyup={handleKeyup}/>
+<svelte:window on:mouseup={onMouseUp} on:mousemove={onMouseMove}/>
 
 <div
         class="panel"
@@ -234,12 +228,13 @@
 <style lang="scss">
   @use "../../colors.scss" as *;
 
+
   .panel {
     border-radius: 10px;
     width: 250px;
     position: absolute;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba($clickgui-base-color, 0.5);
+    box-shadow: 0 0 10px var(--clickgui-panel-shadow-color);
     will-change: transform;
     transition: none;
     user-select: none;
@@ -257,7 +252,7 @@
 
     .category {
       font-size: 14px;
-      color: $clickgui-text-color;
+      color: var(--clickgui-text-color);
       font-weight: 500;
     }
   }
@@ -268,15 +263,20 @@
     max-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: rgba($clickgui-base-color, 0.8);
+    background-color: var(--clickgui-panel-body-background-color);
 
     &.expanded {
       max-height: 545px;
     }
-  }
 
-  .modules::-webkit-scrollbar {
-    width: 0;
+    &::-webkit-scrollbar {
+      width: 2px;
+      height: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+    }
   }
 
   .expand-toggle {
@@ -292,7 +292,7 @@
       &::before {
         content: "";
         position: absolute;
-        background-color: white;
+        background-color: var(--clickgui-panel-toggle-icon-color);
         transition: transform 0.4s ease-out;
         top: 0;
         left: 50%;
@@ -304,7 +304,7 @@
       &::after {
         content: "";
         position: absolute;
-        background-color: white;
+        background-color: var(--clickgui-panel-toggle-icon-color);
         transition: transform 0.4s ease-out;
         top: 50%;
         left: 0;

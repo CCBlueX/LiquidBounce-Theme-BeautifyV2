@@ -60,7 +60,7 @@
 
     {#if expanded}
         <div class="choices" transition:slide|global={{duration: 200, axis: "y"}}>
-            {#each cSetting.choices as choice}
+            {#each cSetting.choices as choice (choice)}
                 <div
                         class="choice"
                         class:active={cSetting.value.includes(choice)}
@@ -79,13 +79,14 @@
 <style lang="scss">
   @use "../../../colors.scss" as *;
 
+
   .setting {
     padding: 7px 0;
-    color: $clickgui-text-color;
+    color: var(--clickgui-text-color);
   }
 
   .title {
-    color: $clickgui-text-color;
+    color: var(--clickgui-text-color);
     font-size: 12px;
     font-weight: 600;
   }
@@ -105,8 +106,8 @@
     }
 
     &.error {
-      background-color: rgba($menu-error-color, 0.1) !important;
-      color: $menu-error-color !important;
+      background-color: var(--clickgui-selection-chip-remove-background-color) !important;
+      color: var(--clickgui-selection-chip-remove-color) !important;
     }
 
     &.active {

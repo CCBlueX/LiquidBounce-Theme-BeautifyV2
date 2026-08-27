@@ -56,6 +56,7 @@
 <style lang="scss">
   @use "../../../../colors.scss" as *;
 
+
   .progress {
     position: relative;
     border-radius: 7.5px;

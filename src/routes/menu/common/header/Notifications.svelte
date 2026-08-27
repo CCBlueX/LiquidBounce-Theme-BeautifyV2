@@ -45,6 +45,7 @@
 <style lang="scss">
   @use "../../../../colors.scss" as *;
 
+
   .notifications {
     display: flex;
     flex-direction: column;

@@ -1,5 +1,6 @@
 {
   "name": "Scoreboard",
+  "description": "Displays the current server scoreboard.",
   "enabled": true,
   "singleton": true,
   "alignment": {
@@ -10,15 +11,32 @@
   },
   "values": [
     {
-      "type": "BOOLEAN",
-      "name": "Numbers",
-      "value": false
+      "type": "MULTI_CHOOSE",
+      "name": "Show",
+      "value": [
+        "Header",
+        "Name",
+        "Score"
+      ],
+      "choices": [
+        "Header",
+        "Name",
+        "Score"
+      ],
+      "canBeNone": false
     },
     {
       "type": "TEXT",
-      "name": "Address",
-      "value": "www.liquidbounce.net"
+      "name": "ReplaceRegex",
+      "value": ""
+    },
+    {
+      "type": "TEXT",
+      "name": "ReplaceWith",
+      "value": ""
     }
   ],
-  "tweaks": ["DISABLE_SCOREBOARD"]
+  "tweaks": [
+    "DISABLE_SCOREBOARD"
+  ]
 }

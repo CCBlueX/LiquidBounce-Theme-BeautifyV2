@@ -1,7 +1,8 @@
 <script lang="ts">
-    import {fade, fly, scale} from "svelte/transition";
+    import {fly} from "svelte/transition";
     import {createEventDispatcher} from "svelte";
-    import {backIn, backOut, cubicIn, cubicOut} from "svelte/easing";
+    import {backIn, backOut} from "svelte/easing";
+    import TitleButtonIcon from "./TitleButtonIcon.svelte";
 
     export let title: string;
     export let icon: string;
@@ -20,11 +21,7 @@
      in:fly|global={{duration: 550, y: -100, delay: index * 125, easing: cubicIn}}>
 
     <div class="icon">
-        {#if !hovered}
-            <img transition:fade={{duration: 250}} src="img/menu/icon-{icon}.svg" alt={icon}>
-        {:else}
-            <img transition:fade={{duration: 250}} src="img/menu/icon-{icon}-hover.svg" alt={icon}>
-        {/if}
+        <TitleButtonIcon {icon} />
     </div>
 
     <div class="title">{title}</div>
@@ -36,6 +33,7 @@
 
 <style lang="scss">
   @use "../../../../colors.scss" as *;
+
 
   .main-button {
     background: rgba($menu-base-color, 0.75);

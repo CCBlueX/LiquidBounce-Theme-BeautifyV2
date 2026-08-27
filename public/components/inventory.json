@@ -1,5 +1,6 @@
 {
   "name": "Inventory",
+  "description": "Displays your main inventory contents.",
   "enabled": true,
   "singleton": true,
   "alignment": {

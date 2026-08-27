@@ -14,6 +14,7 @@
 <style lang="scss">
   @use "../../../colors.scss" as *;
 
+
   .search {
     background-color: rgba($menu-base-color, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.15);

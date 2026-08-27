@@ -30,13 +30,14 @@
 <style lang="scss">
   @use "../../../colors.scss" as *;
 
+
   .setting {
     padding: 7px 0px;
   }
 
   .name {
     font-weight: 500;
-    color: $clickgui-text-color;
+    color: var(--clickgui-text-color);
     font-size: 12px;
     margin-bottom: 5px;
   }

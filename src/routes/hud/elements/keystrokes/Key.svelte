@@ -43,6 +43,7 @@
 <style lang="scss">
   @use "../../../../colors.scss" as *;
 
+
   .key {
     height: 50px;
     background: rgba($keystrokes-base-color, 0.5);

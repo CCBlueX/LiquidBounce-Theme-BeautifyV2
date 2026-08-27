@@ -61,7 +61,6 @@
 </div>
 
 <style lang="scss">
-  @use "../../../colors.scss" as *;
 
   .setting {
     padding: 7px 0;
@@ -69,7 +68,7 @@
 
   .name {
     font-weight: 500;
-    color: $clickgui-text-color;
+    color: var(--clickgui-text-color);
     font-size: 12px;
     margin-bottom: 5px;
   }
@@ -93,10 +92,10 @@
   .button-select {
     cursor: pointer;
     width: 100%;
-    background-color: rgba($clickgui-base-color, .36);
+    background-color: var(--clickgui-input-background-color);
     font-family: monospace;
     font-size: 12px;
-    color: $clickgui-text-dimmed-color;
+    color: var(--clickgui-text-dimmed-color);
     border: none;
     border-bottom: solid 2px rgba(var(--accent-color), 1);
     padding: 6px;

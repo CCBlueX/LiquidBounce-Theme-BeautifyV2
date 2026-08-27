@@ -48,6 +48,7 @@
 <style lang="scss">
   @use "../../../../colors.scss" as *;
 
+
   .menu-list-item {
     display: grid;
     grid-template-areas:
@@ -72,7 +73,7 @@
       border-color: $accent-color;
 
       .subtitle {
-        color: $menu-text-color;
+        color: var(--menu-list-item-hover-subtitle-color);
       }
 
       .buttons .active {
@@ -122,7 +123,7 @@
       bottom: -8px;
       right: -8px;
       display: none;
-      color: $menu-text-color;
+      color: var(--menu-text-color);
       font-size: 12px;
       padding: 4px 12px;
       border-radius: 7.5px;
@@ -142,7 +143,7 @@
 
     .text {
       font-size: 20px;
-      color: $menu-text-color;
+      color: var(--menu-text-color);
       font-weight: 600;
       letter-spacing: .5px;
       transition: color .25s ease;

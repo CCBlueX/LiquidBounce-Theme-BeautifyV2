@@ -1,5 +1,5 @@
-@use "sass:color";
 @use "../../../colors.scss" as *;
+@use "sass:color";
 
 .noUi-handle {
     background-color: white;
@@ -25,5 +25,5 @@
 }
 
 .noUi-connect {
-    background-color: rgba(var(--accent-color), 1);
+    background-color: var(--clickgui-slider-fill-color);
 }

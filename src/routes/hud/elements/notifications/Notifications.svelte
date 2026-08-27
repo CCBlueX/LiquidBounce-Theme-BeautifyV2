@@ -3,20 +3,28 @@
     import {listen} from "../../../../integration/ws";
     import {fly} from "svelte/transition";
     import Notification from "./Notification.svelte";
-    import type {NotificationEvent} from "../../../../integration/events";
+    import type {NotificationEvent, NotificationSeverity} from "../../../../integration/events";
 
     interface TNotification {
         animationKey: number;
         id: number;
         title: string;
-        severity: string;
+        severity: NotificationSeverity;
         message: string;
     }
 
+    export let settings: { [name: string]: any };
+
+    let cSettings: HudNotificationsSettings;
+
+    $: cSettings = settings as HudNotificationsSettings;
+
     let notifications: TNotification[] = [];
 
-    function addNotification(title: string, message: string, severity: string) {
-        const animationKey = Date.now();
+    function addNotification(title: string, message: string, severity: NotificationSeverity) {
+        if (!cSettings.severities.includes(severity)) return;
+
+        let animationKey = Date.now();
         const id = animationKey;
 
         if (severity === "ENABLED" || severity === "DISABLED") {

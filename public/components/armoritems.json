@@ -1,5 +1,6 @@
 {
   "name": "ArmorItems",
+  "description": "Displays your equipped armor.",
   "enabled": true,
   "singleton": true,
   "alignment": {
@@ -7,5 +8,16 @@
     "horizontalOffset": 250,
     "verticalAlignment": "Bottom",
     "verticalOffset": 10
-  }
+  },
+  "values": [
+    {
+      "type": "CHOOSE",
+      "name": "Layout",
+      "value": "Vertical",
+      "choices": [
+        "Vertical",
+        "Horizontal"
+      ]
+    }
+  ]
 }

@@ -31,7 +31,9 @@
 
 <style lang="scss">
   @use "sass:color";
+
   @use "../../../../colors.scss" as *;
+
 
   .button-setting {
     position: relative;

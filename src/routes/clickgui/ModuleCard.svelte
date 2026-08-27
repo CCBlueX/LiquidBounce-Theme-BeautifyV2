@@ -18,7 +18,7 @@
   -->
 
 <script lang="ts">
-  import BindSetting from "./setting/BindSetting.svelte";
+  import BindSetting from "./setting/bind/BindSetting.svelte";
   import { getModuleSettings, setModuleSettings } from "../../integration/rest";
   import { onMount, onDestroy } from "svelte";
   export let module: { name: string, color: string, enabled: boolean, settingsCount: number, description?: string, bind?: string | null };
@@ -117,7 +117,7 @@
       {#if loadingBind}
         <div class="bind-loading">Loading bind...</div>
       {:else if bindSetting}
-        <BindSetting bind:setting={bindSetting} moduleName={module.name} on:change={handleBindChange} />
+        <BindSetting bind:setting={bindSetting} on:change={handleBindChange} />
       {:else}
         <div class="bind-loading">Bind not found</div>
       {/if}

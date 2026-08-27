@@ -48,6 +48,7 @@
 <style lang="scss">
   @use "../../../../../colors.scss" as *;
 
+
   .select {
     cursor: pointer;
     min-width: 250px;
@@ -73,7 +74,7 @@
     transition: ease border-radius .2s;
 
     .title {
-      color: $menu-text-color;
+      color: var(--menu-text-color);
       font-size: 20px;
       font-weight: 6000;
     }
