@@ -55,7 +55,7 @@
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
         document.documentElement.style.setProperty(
-            "--accent-color",
+            "--accent-rgb",
             hexToRgbString(accentColor)
         );
     });
@@ -228,7 +228,7 @@
 
   .durability-fill {
     height: 100%;
-    background: rgba(var(--accent-color), 0.9);
+    background: rgba(var(--accent-rgb), 0.9);
     transition: width 0.2s ease;
   }
 </style>

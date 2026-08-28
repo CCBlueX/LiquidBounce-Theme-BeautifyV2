@@ -26,7 +26,7 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
-        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+        document.documentElement.style.setProperty('--accent-rgb', hexToRgbString(accentColor));
     });
 
     function updatePlayerData(s: PlayerData) {
@@ -209,9 +209,9 @@
       height: 45px;
       width: 45px;
       border-radius: 7.5px;
-      border: 2px solid rgba(var(--accent-color), 1);
-      background: rgba(var(--accent-color), 0.12);
-      box-shadow: 0 0 12px rgba(var(--accent-color), 0.6);
+      border: 2px solid rgba(var(--accent-rgb), 1);
+      background: rgba(var(--accent-rgb), 0.12);
+      box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.6);
       /* transition: linear left 0.05s; TODO: Animation is possible but annoying */
     }
 

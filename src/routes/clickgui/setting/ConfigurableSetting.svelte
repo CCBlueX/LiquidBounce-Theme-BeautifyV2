@@ -9,6 +9,7 @@
     export let setting: ModuleSetting;
     export let path: string;
     export let hideExpandControl: boolean = false;
+    export let moduleName: string = "";
 
     const cSetting = setting as ConfigurableSetting;
     const thisPath = `${path}.${cSetting.name}`;

@@ -218,8 +218,8 @@
     border: 1px solid $clickgui-border-color;
     transition: box-shadow 0.2s, border-color 0.2s, border-radius 0.18s;
     &:focus-within, &.open {
-      border: 1px solid rgba(var(--accent-color), 1);
-      box-shadow: 0 0 10px rgba(var(--accent-color), 0.5);
+      border: 1px solid rgba(var(--accent-rgb), 1);
+      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
       border-radius: 10px 10px 0 0;
     }
     &.open {
@@ -277,13 +277,13 @@
     border-radius: 0 0 10px 10px;
     max-height: 225px;
     overflow-y: auto;
-    border-top: 1px solid rgba(var(--accent-color), 1);
+    border-top: 1px solid rgba(var(--accent-rgb), 1);
     margin-top: 0;
     animation: fadeIn 0.18s;
     transition: box-shadow 0.2s, border-radius 0.2s;
     &.open {
-      border: 1px solid rgba(var(--accent-color), 1);
-      box-shadow: 0 0 10px rgba(var(--accent-color), 0.5);
+      border: 1px solid rgba(var(--accent-rgb), 1);
+      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
     }
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -306,7 +306,7 @@
     margin: 2px 2px;
     color: $clickgui-text-color;
     &:hover, &.selected {
-      background: rgba(var(--accent-color), 0.1);
+      background: rgba(var(--accent-rgb), 0.1);
     }
     &.enabled {
       color: var(--accent-color);

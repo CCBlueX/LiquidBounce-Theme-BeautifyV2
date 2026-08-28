@@ -5,6 +5,8 @@
   --text-dimmed-color: rgb(160, 160, 180);
 
   --accent-color: dodgerblue;
+  /* same accent as an R,G,B triplet, for rgba() use */
+  --accent-rgb: 30, 144, 255;
   --accent-hover-color: color-mix(in srgb, var(--accent-color) 82%, black);
   --accent-subtle-background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
 

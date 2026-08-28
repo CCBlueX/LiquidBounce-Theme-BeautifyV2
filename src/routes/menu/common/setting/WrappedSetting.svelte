@@ -51,7 +51,7 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
-        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+        document.documentElement.style.setProperty('--accent-rgb', hexToRgbString(accentColor));
     });
 
     onMount(async () => {

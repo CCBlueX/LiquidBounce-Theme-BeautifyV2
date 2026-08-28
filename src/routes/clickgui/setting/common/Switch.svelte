@@ -76,7 +76,7 @@
     top: 1px;
     width: 4px;
     height: 11px;
-    border: solid rgba(var(--accent-color), 1);
+    border: solid rgba(var(--accent-rgb), 1);
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
   }

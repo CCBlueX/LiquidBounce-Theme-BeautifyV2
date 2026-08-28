@@ -111,8 +111,8 @@
     }
 
     &.active {
-      background-color: rgba(var(--accent-color), 0.1);
-      color: rgba(var(--accent-color), 1);
+      background-color: rgba(var(--accent-rgb), 0.1);
+      color: rgba(var(--accent-rgb), 1);
     }
   }
 

@@ -44,7 +44,9 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
-        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+        document.documentElement.style.setProperty('--accent-rgb', hexToRgbString(accentColor));
+        // keep the plain colour in sync too - the tabs/settings/HUD-editor UI uses it directly
+        document.documentElement.style.setProperty('--accent-color', accentColor);
     });
 
     async function refreshModules() {

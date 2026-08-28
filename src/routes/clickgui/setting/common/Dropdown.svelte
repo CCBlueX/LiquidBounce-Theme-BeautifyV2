@@ -170,13 +170,13 @@
       transition: background 0.15s ease, color 0.15s ease;
 
       &:hover {
-        background: rgba(var(--accent-color), 0.15);
+        background: rgba(var(--accent-rgb), 0.15);
         color: $clickgui-text-color;
       }
 
       &.active {
-        color: rgba(var(--accent-color), 1);
-        text-shadow: 0 0 10px rgba(var(--accent-color), 0.5);
+        color: rgba(var(--accent-rgb), 1);
+        text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
       }
     }
   }

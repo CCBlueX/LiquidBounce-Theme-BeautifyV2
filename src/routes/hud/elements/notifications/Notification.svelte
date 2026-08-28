@@ -12,7 +12,7 @@
     let progress = 100;
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
-        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+        document.documentElement.style.setProperty('--accent-rgb', hexToRgbString(accentColor));
     });
 
     onMount(async () => {
@@ -69,20 +69,20 @@
     background-image: url("/img/hud/notification/icon-toggle.svg");
 
     &.success {
-      background-color: rgba(var(--accent-color), 0.6);
-      box-shadow: 0 0 8px rgba(var(--accent-color), 0.5);
+      background-color: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
       background-image: url("/img/hud/notification/icon-success.svg");
     }
 
     &.error {
-      background-color: rgba(var(--accent-color), 0.6);
-      box-shadow: 0 0 8px rgba(var(--accent-color), 0.5);
+      background-color: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
       background-image: url("/img/hud/notification/icon-error.svg");
     }
 
     &.info {
-      background-color: rgba(var(--accent-color), 0.6);
-      box-shadow: 0 0 8px rgba(var(--accent-color), 0.5);
+      background-color: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
       background-image: url("/img/hud/notification/icon-info.svg");
     }
 
@@ -102,8 +102,8 @@
     }
 
     &.enabled {
-      background-color: rgba(var(--accent-color), 0.6);
-      box-shadow: 0 0 8px rgba(var(--accent-color), 0.5);
+      background-color: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
 
       &::after {
         left: 62%;
@@ -111,8 +111,8 @@
     }
 
     &.disabled {
-      background-color: rgba(var(--accent-color), 0.6);
-      box-shadow: 0 0 8px rgba(var(--accent-color), 0.5);
+      background-color: rgba(var(--accent-rgb), 0.6);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
 
       &::after {
         left: 38%;
@@ -126,7 +126,7 @@
     color: #fff;
     font-weight: 700;
     letter-spacing: 0.3px;
-    text-shadow: 0 0 6px rgba(var(--accent-color), 0.4);
+    text-shadow: 0 0 6px rgba(var(--accent-rgb), 0.4);
   }
 
   .message {
@@ -141,8 +141,8 @@
     left: 0;
     bottom: 0;
     height: 4px;
-    background: linear-gradient(90deg, rgba(var(--accent-color), 1), rgba(var(--accent-color), 0.5));
-    box-shadow: 0 -2px 10px rgba(var(--accent-color), 0.7);
+    background: linear-gradient(90deg, rgba(var(--accent-rgb), 1), rgba(var(--accent-rgb), 0.5));
+    box-shadow: 0 -2px 10px rgba(var(--accent-rgb), 0.7);
     transition: width 1.5s linear;
     z-index: 2;
     border-radius: 0 0 5px 5px;

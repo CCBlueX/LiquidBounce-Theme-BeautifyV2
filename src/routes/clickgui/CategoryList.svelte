@@ -77,8 +77,8 @@
   position: relative;
   &:hover,
   &.selected {
-    background: rgba(var(--accent-color), 0.25);
-    box-shadow: 0 0 10px rgba(var(--accent-color), 0.25);
+    background: rgba(var(--accent-rgb), 0.25);
+    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.25);
   }
   .name {
     flex: 1;
@@ -89,7 +89,7 @@
   }
   &.selected {
     background: rgba(var(—accent-color), 0.5);
-    box-shadow: 0 0 10px rgba(var(--accent-color), 0.35);
+    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.35);
     transform: translateX(2.5px);
     transition: 0.25s ease;
     .name {

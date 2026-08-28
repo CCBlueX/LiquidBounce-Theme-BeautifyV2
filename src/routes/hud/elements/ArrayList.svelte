@@ -20,11 +20,11 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = hexToRgbString(color);
-        if (arraylist) arraylist.style.setProperty('--accent-color', accentColor);
+        if (arraylist) arraylist.style.setProperty('--accent-rgb', accentColor);
     });
 
     onMount(() => {
-        if (arraylist) arraylist.style.setProperty('--accent-color', accentColor);
+        if (arraylist) arraylist.style.setProperty('--accent-rgb', accentColor);
     });
 
     onDestroy(() => {
@@ -110,8 +110,8 @@
     font-family: MyCustomFont;
     border-radius: 4px 0 0 4px;
     background: rgba($arraylist-base-color, 0.45);
-    color: rgba(var(--accent-color), 1);
-    text-shadow: 0 0 8px rgba(var(--accent-color), 0.75);
+    color: rgba(var(--accent-rgb), 1);
+    text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.75);
     width: max-content;
 
     &::after {
@@ -122,8 +122,8 @@
       bottom: 5%;
       width: 2px;
       border-radius: 2px;
-      background: rgba(var(--accent-color), 1);
-      box-shadow: 0 0 6px rgba(var(--accent-color), 0.75);
+      background: rgba(var(--accent-rgb), 1);
+      box-shadow: 0 0 6px rgba(var(--accent-rgb), 0.75);
     }
   }
 

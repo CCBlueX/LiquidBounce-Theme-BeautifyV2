@@ -246,7 +246,7 @@
     align-items: center;
     column-gap: 12px;
     background-color: rgba($clickgui-base-color, 0.9);
-    border-bottom: solid 2px rgba(var(--accent-color), 1);
+    border-bottom: solid 2px rgba(var(--accent-rgb), 1);
     padding: 10px 15px;
     cursor: grab;
 

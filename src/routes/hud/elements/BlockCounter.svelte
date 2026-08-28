@@ -23,7 +23,7 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
-        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+        document.documentElement.style.setProperty('--accent-rgb', hexToRgbString(accentColor));
     });
 
     onMount(async () => {
@@ -117,8 +117,8 @@
       width: 40px;
       height: 40px;
       border-radius: 8px;
-      background: rgba(var(--accent-color), 0.18);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 0 6px rgba(var(--accent-color), 0.35);
+      background: rgba(var(--accent-rgb), 0.18);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 0 6px rgba(var(--accent-rgb), 0.35);
 
       .block-icon {
         width: 32px;
@@ -135,7 +135,7 @@
       .bar-bg {
         width: 100%;
         height: 7px;
-        background: rgba(var(--accent-color), 0.15);
+        background: rgba(var(--accent-rgb), 0.15);
         border: 1px solid rgba(150, 150, 150, 0.15);
         border-radius: 4px;
         margin-bottom: 8px;
@@ -144,10 +144,10 @@
 
         .bar-fg {
           height: 100%;
-          background: linear-gradient(90deg, rgba(var(--accent-color), 0.65), rgba(var(--accent-color), 1));
+          background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.65), rgba(var(--accent-rgb), 1));
           border-radius: 4px;
           transition: width 0.25s ease-in-out;
-          box-shadow: 0 0 8px rgba(var(--accent-color), 0.6), 0 0 16px rgba(var(--accent-color), 0.4);
+          box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.6), 0 0 16px rgba(var(--accent-rgb), 0.4);
         }
       }
 

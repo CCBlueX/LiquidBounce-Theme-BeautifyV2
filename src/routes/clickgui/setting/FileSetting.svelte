@@ -97,7 +97,7 @@
     font-size: 12px;
     color: var(--clickgui-text-dimmed-color);
     border: none;
-    border-bottom: solid 2px rgba(var(--accent-color), 1);
+    border-bottom: solid 2px rgba(var(--accent-rgb), 1);
     padding: 6px;
     border-radius: 3px;
     transition: ease border-color .2s;

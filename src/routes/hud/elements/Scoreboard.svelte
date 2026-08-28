@@ -15,7 +15,7 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
-        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+        document.documentElement.style.setProperty('--accent-rgb', hexToRgbString(accentColor));
     });
 
     onMount(async () => {
@@ -91,7 +91,7 @@
     padding: 7px 12px;
     font-weight: bold;
     color: white;
-    text-shadow: 0 0 8px rgba(var(--accent-color), 0.9);
+    text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.9);
   }
 
   .hidden {
@@ -100,8 +100,8 @@
   }
 
   .custom-ip {
-    color: rgba(var(--accent-color), 1);
-    text-shadow: 0 0 10px rgba(var(--accent-color), 0.9);
+    color: rgba(var(--accent-rgb), 1);
+    text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.9);
     font-weight: 700;
     display: block;
     text-align: center;

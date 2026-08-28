@@ -24,7 +24,7 @@
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
         document.documentElement.style.setProperty(
-            "--accent-color",
+            "--accent-rgb",
             hexToRgbString(accentColor)
         );
     });
@@ -51,7 +51,7 @@
     width: 100%;
     height: 8px;
     border-radius: 8px;
-    background: rgba(var(--accent-color), 0.15);
+    background: rgba(var(--accent-rgb), 0.15);
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(150, 150, 150, 0.15);
     overflow: hidden;
@@ -60,7 +60,7 @@
   .delayed-thumb {
     position: absolute;
     height: 100%;
-    background: rgba(var(--accent-color), 0.35);
+    background: rgba(var(--accent-rgb), 0.35);
     transition: width 0.25s ease-in-out;
     border-radius: 8px;
   }
@@ -68,9 +68,9 @@
   .thumb {
     position: absolute;
     height: 100%;
-    background: linear-gradient(90deg, rgba(var(--accent-color), 0.65), rgba(var(--accent-color), 1));
+    background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.65), rgba(var(--accent-rgb), 1));
     border-radius: 8px;
     transition: width 0.25s ease-in-out;
-    box-shadow: 0 0 8px rgba(var(--accent-color), 0.6), 0 0 16px rgba(var(--accent-color), 0.4);
+    box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.6), 0 0 16px rgba(var(--accent-rgb), 0.4);
   }
 </style>

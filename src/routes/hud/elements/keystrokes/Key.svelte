@@ -15,11 +15,11 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = hexToRgbString(color);
-        if (keyElement) keyElement.style.setProperty('--accent-color', accentColor);
+        if (keyElement) keyElement.style.setProperty('--accent-rgb', accentColor);
     });
 
     onMount(() => {
-        if (keyElement) keyElement.style.setProperty('--accent-color', accentColor);
+        if (keyElement) keyElement.style.setProperty('--accent-rgb', accentColor);
     });
 
     onDestroy(() => {
@@ -59,25 +59,25 @@
     position: relative;
     text-align: center;
     user-select: none;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 0 0 0 rgba(var(--accent-color), 0.5);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 0 0 0 rgba(var(--accent-rgb), 0.5);
 
     &::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      box-shadow: 0 0 8px rgba(var(--accent-color), 0.35);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.35);
       opacity: 0;
       transition: opacity 0.25s ease;
     }
 
     &.active {
       transform: scale(0.95);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 0 15px rgba(var(--accent-color), 0.75);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset 0 0 15px rgba(var(--accent-rgb), 0.75);
 
       &::after {
         opacity: 1;
-        box-shadow: 0 0 15px rgba(var(--accent-color), 0.75);
+        box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.75);
       }
     }
   }

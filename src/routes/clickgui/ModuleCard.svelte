@@ -141,13 +141,13 @@
   box-shadow: 0 4px 8px rgba($modulecard-main-color, 0.5);
   transition: box-shadow 0.2s, background 0.2s, transform 0.2s ease;
   &:hover {
-    box-shadow: 0 4px 8px rgba(var(--accent-color), 0.5);
-    border-color: rgba(var(--accent-color), 1);
+    box-shadow: 0 4px 8px rgba(var(--accent-rgb), 0.5);
+    border-color: rgba(var(--accent-rgb), 1);
     background: $modulecard-hover-color;
   }
   &.highlighted {
-    border-color: rgba(var(--accent-color), 1);
-    box-shadow: 0 0 10px rgba(var(--accent-color), 0.5);
+    border-color: rgba(var(--accent-rgb), 1);
+    box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
   }
   .main {
     display: flex;
@@ -161,8 +161,8 @@
       flex: 1;
       transition: color 0.2s;
       &.enabled {
-        color: rgba(var(--accent-color), 0.75);
-        text-shadow: 0 0 10px rgba(var(--accent-color), 0.5);
+        color: rgba(var(--accent-rgb), 0.75);
+        text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
       }
     }
     .bind-btn,
@@ -183,9 +183,9 @@
         height: 24px;
       }
       &:hover {
-        background: rgba(var(--accent-color), 0.25);
-        border-color: rgba(var(--accent-color), 1);
-        box-shadow: 0 0 8px rgba(var(--accent-color), 0.5);
+        background: rgba(var(--accent-rgb), 0.25);
+        border-color: rgba(var(--accent-rgb), 1);
+        box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.5);
       }
     }
     .switch {
@@ -205,13 +205,13 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(var(--accent-color), 0.15);
+        background: rgba(var(--accent-rgb), 0.15);
         border-radius: 50px;
         transition: .35s;
       }
       input:checked + .slider {
-        background: rgba(var(--accent-color), 0.75);
-        box-shadow: 0 0 10px rgba(var(--accent-color), 0.5);
+        background: rgba(var(--accent-rgb), 0.75);
+        box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
       }
       .slider:before {
         position: absolute;

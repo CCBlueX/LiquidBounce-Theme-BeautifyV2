@@ -92,7 +92,7 @@
     display: block;
     width: 24px;
     height: 24px;
-    filter: drop-shadow(0 0 10px rgba(var(--accent-color), 0.5));
+    filter: drop-shadow(0 0 10px rgba(var(--accent-rgb), 0.5));
   }
 
   .information {

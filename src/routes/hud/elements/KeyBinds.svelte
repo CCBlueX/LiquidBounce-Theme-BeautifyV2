@@ -38,7 +38,7 @@
     let accentColor = "dodgerblue";
     const unsubscribeAccent = accentColorStore.subscribe((color: string) => {
         accentColor = color;
-        document.documentElement.style.setProperty('--accent-color', hexToRgbString(accentColor));
+        document.documentElement.style.setProperty('--accent-rgb', hexToRgbString(accentColor));
     });
 
     onMount(async () => {
@@ -152,8 +152,8 @@
     align-items: center;
 
     .title {
-      color: rgba(var(--accent-color), 1);
-      text-shadow: 0 0 10px rgba(var(--accent-color), 0.75);
+      color: rgba(var(--accent-rgb), 1);
+      text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.75);
       font-weight: 700;
       font-size: 15px;
       letter-spacing: 0.4px;
@@ -197,7 +197,7 @@
       .module-name {
         color: #fff;
         font-weight: 600;
-        text-shadow: 0 0 8px rgba(var(--accent-color), 0.7);
+        text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.7);
       }
     }
 
@@ -215,15 +215,15 @@
     .key-tile-btn {
       font-size: 12px;
       color: white;
-      background: linear-gradient(145deg, rgba(var(--accent-color), 0.8), rgba(var(--accent-color), 0.55));
-      border: 1px solid rgba(var(--accent-color), 0.4);
+      background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.8), rgba(var(--accent-rgb), 0.55));
+      border: 1px solid rgba(var(--accent-rgb), 0.4);
       border-radius: 6px;
       padding: 3px 7px;
       font-weight: 700;
       min-width: 32px;
       text-align: center;
       transition: all 0.25s ease;
-      box-shadow: 0 0 10px rgba(var(--accent-color), 0.35);
+      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.35);
 
       &.muted {
         background: rgba($keybinds-base-color, 0.4);
