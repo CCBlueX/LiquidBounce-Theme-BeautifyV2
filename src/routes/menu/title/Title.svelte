@@ -9,7 +9,8 @@
         exitClient,
         getClientUpdate,
         openScreen,
-        toggleBackgroundShaderEnabled
+        toggleBackgroundShaderEnabled,
+        toggleBasicMode
     } from "../../../integration/rest";
     import {fly} from "svelte/transition";
     import {onMount} from "svelte";
@@ -78,6 +79,7 @@
         <div class="additional-buttons" transition:fly|global={{duration: 700, y: -100}}>
             <ButtonContainer>
                 <IconTextButton icon="icon-exit.svg" title="Exit" on:click={exitClient}/>
+                <IconTextButton icon="icon-eye.svg" title="Basic Mode" on:click={toggleBasicMode}/>
             </ButtonContainer>
         </div>
 

@@ -1,4 +1,8 @@
-<div class="button-container">
+<script lang="ts">
+    export let vertical = false;
+</script>
+
+<div class="button-container" class:vertical>
     <slot />
 </div>
 
@@ -16,5 +20,10 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
     transition: 0.25s ease;
     font-family: MyCustomFont;
+
+    &.vertical {
+      flex-direction: column;
+      row-gap: 20px;
+    }
   }
 </style>

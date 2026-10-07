@@ -1,6 +1,6 @@
 <script lang="ts">
     import type {ConfigurableSetting, Module} from "../../integration/types";
-    import {getModuleSettings, setModuleEnabled, setTyping} from "../../integration/rest";
+    import {getModuleSettings, setModuleEnabled} from "../../integration/rest";
     import {listen} from "../../integration/ws";
     import type {ClickGuiValueChangeEvent, KeyboardKeyEvent, ModuleToggleEvent} from "../../integration/events";
     import {highlightModuleName} from "./clickgui_store";
@@ -158,8 +158,8 @@
         bind:this={searchInputElement}
         on:input={filterModules}
         on:keydown={handleBrowserKeyDown}
-        on:focusin={() => { isFocused = true; setTyping(true); }}
-        on:focusout={() => { isFocused = false; setTyping(false); }}
+        on:focusin={() => isFocused = true}
+        on:focusout={() => isFocused = false}
       />
     </div>
     {#if query}

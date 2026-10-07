@@ -31,7 +31,7 @@
             return;
         }
 
-        active = e.action === 1 || e.action === 2;
+        active = e.action === 1 || e.action === -1;
     });
 </script>
 
