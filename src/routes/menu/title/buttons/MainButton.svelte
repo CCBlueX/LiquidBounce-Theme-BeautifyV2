@@ -1,7 +1,7 @@
 <script lang="ts">
     import {fly} from "svelte/transition";
     import {createEventDispatcher} from "svelte";
-    import {backIn, backOut} from "svelte/easing";
+    import {cubicIn, cubicOut} from "svelte/easing";
     import TitleButtonIcon from "./TitleButtonIcon.svelte";
 
     export let title: string;
