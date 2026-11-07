@@ -83,6 +83,7 @@
     align-items: center;
     padding: 3px 0;
     transition: all 0.15s ease;
+    min-height: 14px; // Text component height
   }
 
   .header {

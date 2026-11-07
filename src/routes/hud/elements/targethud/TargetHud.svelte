@@ -140,11 +140,12 @@
     image-rendering: pixelated;
     border: 2px solid transparent;
 
+    // Face is the 8x8 square at (8, 8) of a 64-wide skin, at whatever resolution the texture has.
     img {
       position: absolute;
-      scale: 6.25;
-      left: 116px;
-      top: 116px;
+      width: 800%;
+      left: -100%;
+      top: -100%;
     }
   }
 

@@ -9,6 +9,7 @@
     import {convertToSpacedString, spaceSeperatedNames} from "../../../theme/theme_config";
     import {accentColorStore} from '../../../theme/accentColorStore';
     import {hexToRgbString} from "../../../integration/util";
+    import type {HudArrayListSettings} from "../components";
 
     export let settings: { [name: string]: any };
 
