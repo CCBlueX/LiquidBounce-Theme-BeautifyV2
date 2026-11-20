@@ -3,6 +3,7 @@
     import CategoryList from "./CategoryList.svelte";
     import ModuleComponent from "./Module.svelte";
     import ModuleCard from "./ModuleCard.svelte";
+    import GlobalSettings from "./GlobalSettings.svelte";
     import {getModules, getClientInfo, setModuleEnabled} from "../../integration/rest";
     import {groupByCategory, hexToRgbString} from "../../integration/util";
     import type {Module, ClientInfo} from "../../integration/types";
@@ -92,7 +93,7 @@
             count: grouped[cat].length
         }));
         const savedCategory = localStorage.getItem("lb_selectedCategory");
-        if (savedCategory && categories.some(c => c.name === savedCategory)) {
+        if (savedCategory && (savedCategory === "Settings" || categories.some(c => c.name === savedCategory))) {
             selectedCategory = savedCategory;
         } else {
             const defaultCategory = "Combat";
@@ -281,6 +282,9 @@
             <CategoryList categories={categories} selected={selectedCategory} onSelect={handleCategorySelect}/>
         </div>
         <div class="module-grid-panel" bind:this={moduleGridPanel}>
+            {#if selectedCategory === "Settings"}
+                <GlobalSettings/>
+            {:else}
             <div class="module-grid">
                 {#each modulesByCategory[selectedCategory] as module, index}
                     <ModuleCard
@@ -295,6 +299,7 @@
                     />
                 {/each}
             </div>
+            {/if}
         </div>
         <div class="settings-panel">
             {#if selectedModule}

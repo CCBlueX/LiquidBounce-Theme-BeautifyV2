@@ -54,6 +54,11 @@
       <span class="name">{cat.name}</span>
     </div>
   {/each}
+  <div class="category-item {selected === 'Settings' ? 'selected' : ''}"
+       on:click={() => onSelect("Settings")}>
+    <CategoryIcon name="Client" selected={selected === "Settings"} />
+    <span class="name">Settings</span>
+  </div>
 </div>
 
 <style lang="scss">
