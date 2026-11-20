@@ -1,11 +1,10 @@
 <script lang="ts">
-    import {onMount, onDestroy} from "svelte";
+    import {onMount} from "svelte";
     import type {Module as TModule} from "../../integration/types";
     import {listen} from "../../integration/ws";
     import Module from "./Module.svelte";
     import type {KeyboardKeyEvent, ModuleToggleEvent} from "../../integration/events";
     import {fade} from "svelte/transition";
-    import {quintOut} from "svelte/easing";
     import {
         gridSize,
         highlightModuleName,
@@ -17,7 +16,7 @@
     import {setItem} from "../../integration/persistent_storage";
 
     export let category: string;
-    export let modules: TModule[];
+    export let modules: TModule[] = [];
     export let panelIndex: number;
     export let icon: string | undefined = undefined;
 
@@ -67,6 +66,7 @@
         } else {
             const config: PanelConfig = JSON.parse(localStorageItem);
 
+            // Migration
             if (!config.zIndex) {
                 config.zIndex = 0;
             }
@@ -172,7 +172,12 @@
     listen("moduleToggle", (e: ModuleToggleEvent) => {
         const moduleName = e.moduleName;
         const moduleEnabled = e.enabled;
-        modules = modules.map(m => m.name === moduleName ? { ...m, enabled: moduleEnabled } : m);
+
+        const mod = modules.find((m) => m.name === moduleName);
+        if (!mod) return;
+
+        mod.enabled = moduleEnabled;
+        modules = modules;
     });
 
     onMount(() => {
@@ -180,20 +185,7 @@
             return;
         }
 
-        modulesElement.scrollTo({
-            top: panelConfig.scrollTop,
-            behavior: "smooth"
-        });
-
-        window.addEventListener('moduleSettingsChanged', () => {
-            modules = [...modules];
-        });
-    });
-
-    onDestroy(() => {
-        window.removeEventListener('moduleSettingsChanged', () => {
-            modules = [...modules];
-        });
+        modulesElement.scrollTop = panelConfig.scrollTop;
     });
 
     listen("keyboardKey", (e: KeyboardKeyEvent) => {
@@ -215,7 +207,7 @@
         class="panel"
         style="left: {panelConfig.left}px; top: {panelConfig.top}px; z-index: {panelConfig.zIndex};"
         bind:this={panelElement}
-        transition:fade|global={{duration: 200, easing: quintOut}}
+        transition:fade|global={{duration: 150}}
 >
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div
@@ -244,18 +236,18 @@
             on:transitionend={handleModulesTransitionEnd}
             bind:this={modulesElement}
     >
-        {#each modules as {name, enabled, description, aliases} (name)}
-            <Module {name} {enabled} {description} {aliases}/>
-        {/each}
+        <slot>
+            {#each modules as {name, enabled, description, aliases} (name)}
+                <Module {name} {enabled} {description} {aliases}/>
+            {/each}
+        </slot>
     </div>
 </div>
 
 <style lang="scss">
-  @use "../../colors.scss" as *;
-
 
   .panel {
-    border-radius: 10px;
+    border-radius: 5px;
     width: 250px;
     position: absolute;
     overflow: hidden;
@@ -270,8 +262,8 @@
     grid-template-columns: max-content 1fr max-content;
     align-items: center;
     column-gap: 12px;
-    background-color: rgba($clickgui-base-color, 0.9);
-    border-bottom: solid 2px rgba(var(--accent-rgb), 1);
+    background-color: var(--clickgui-panel-header-background-color);
+    border-bottom: solid 2px var(--clickgui-panel-header-border-color);
     padding: 10px 15px;
     cursor: grab;
 
@@ -283,7 +275,7 @@
   }
 
   .modules {
-    transition: max-height 300ms ease;
+    transition: max-height 180ms cubic-bezier(0.23, 1, 0.32, 1);
     scroll-behavior: smooth;
     max-height: 0;
     overflow-y: auto;
@@ -318,7 +310,7 @@
         content: "";
         position: absolute;
         background-color: var(--clickgui-panel-toggle-icon-color);
-        transition: transform 0.4s ease-out;
+        transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
         top: 0;
         left: 50%;
         width: 2px;
@@ -330,7 +322,7 @@
         content: "";
         position: absolute;
         background-color: var(--clickgui-panel-toggle-icon-color);
-        transition: transform 0.4s ease-out;
+        transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
         top: 50%;
         left: 0;
         width: 100%;

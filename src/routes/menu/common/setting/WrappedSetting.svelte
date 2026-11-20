@@ -3,12 +3,12 @@
     import {fade} from "svelte/transition";
     import SwitchSetting from "./SwitchSetting.svelte";
     import GenericSetting from "../../../clickgui/setting/common/GenericSetting.svelte";
-    import {quintOut} from "svelte/easing";
     import {convertToSpacedString} from "../../../../theme/theme_config";
     import {accentColorStore} from "../../../../theme/accentColorStore";
     import {hexToRgbString} from "../../../../integration/util";
     import {onDestroy, onMount} from "svelte";
     import {getClickGuiColor} from "../../../../integration/persistent_storage";
+    import {escapeLayer} from "../../../../integration/escape";
 
     interface Props {
         value: NesterSetting,
@@ -61,6 +61,8 @@
     onDestroy(() => {
         unsubscribeAccent();
     });
+    const layer = escapeLayer(() => expanded = false);
+    $effect(() => layer.setOpen(expanded));
 </script>
 
 <svelte:window on:click={handleWindowClick}/>
@@ -83,7 +85,7 @@
     </div>
 
     {#if expanded && value.value.length > 0}
-        <div class="nested-settings" transition:fade|global={{ duration: 200, easing: quintOut }}>
+        <div class="nested-settings" transition:fade|global={{ duration: 140 }}>
             {#each value.value as setting, i (setting.name)}
                 <GenericSetting {path} bind:setting={value.value[i]} moduleName={value.name} on:change/>
             {/each}

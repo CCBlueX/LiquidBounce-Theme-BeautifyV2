@@ -6,6 +6,7 @@
     import {highlightModuleName} from "./clickgui_store";
     import {onMount} from "svelte";
     import {convertToSpacedString, spaceSeperatedNames} from "../../theme/theme_config";
+    import {escapeLayer} from "../../integration/escape";
 
     export let modules: Module[];
     export let onJumpToModule: (moduleName: string) => void;
@@ -24,6 +25,9 @@
         query = "";
         $highlightModuleName = null;
     }
+
+    const layer = escapeLayer(reset);
+    $: layer.setOpen(!!query);
 
     function filterModules() {
         if (!query) {
@@ -73,7 +77,7 @@
         }
 
         resultElements[selectedIndex]?.scrollIntoView({
-            behavior: "smooth",
+            behavior: "instant",
             block: "nearest",
         });
     }

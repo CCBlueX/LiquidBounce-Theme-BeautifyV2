@@ -1,7 +1,6 @@
 <script lang="ts">
-    import {fly} from "svelte/transition";
     import {createEventDispatcher} from "svelte";
-    import {cubicIn, cubicOut} from "svelte/easing";
+    import {fly} from "svelte/transition";
     import TitleButtonIcon from "./TitleButtonIcon.svelte";
 
     export let title: string;
@@ -16,10 +15,9 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="main-button" on:mouseenter={() => hovered = true} on:mouseleave={() => hovered = false} on:click={() => hovered = false}
-     on:click={() => dispatch("click")} out:fly|global={{duration: 550, y: -100, delay: (3 - index) * 125, easing: cubicOut}}
-     in:fly|global={{duration: 550, y: -100, delay: index * 125, easing: cubicIn}}>
-
+<div class="main-button" on:mouseenter={() => { hovered = true; dispatch("mouseenter"); }} on:mouseleave={() => hovered = false} on:click={() => hovered = false}
+     on:click={() => dispatch("click")}
+     in:fly|global={{duration: 180, y: -40, delay: index * 25}}>
     <div class="icon">
         <TitleButtonIcon {icon} />
     </div>
