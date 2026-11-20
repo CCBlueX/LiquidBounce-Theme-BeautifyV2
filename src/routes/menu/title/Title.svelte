@@ -139,7 +139,8 @@
 
     .logo {
         position: fixed;
-        top: 22.5%;
+        /* Offset from the centered button stack, so the logo stays clear of it in short windows */
+        top: calc(50% - 285px);
         left: 50%;
         translate: -50% -50%;
     }

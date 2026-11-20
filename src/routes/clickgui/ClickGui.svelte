@@ -335,10 +335,8 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 1200px;
-    max-width: 1500px;
-    height: 650px;
-    max-height: 1000px;
+    width: min(1200px, calc(100vw - 20px));
+    height: min(650px, calc(82.5vh - 20px));
     overflow: hidden;
     margin: 17.5vh auto;
     font-family: "Inter", sans-serif;

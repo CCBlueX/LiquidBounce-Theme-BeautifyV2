@@ -19,5 +19,9 @@
     margin-bottom: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     font-family: MyCustomFont;
+
+    @media (max-width: 1400px) {
+      column-gap: 15px;
+    }
   }
 </style>

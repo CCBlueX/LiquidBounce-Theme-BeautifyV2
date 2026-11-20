@@ -125,7 +125,7 @@
     margin: 0;
     margin-right: 7.5px;
     margin-left: auto;
-    width: 65px;
+    width: calc(9ch + 6px);
     font-family: monospace;
   }
 
